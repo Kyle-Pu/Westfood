@@ -4,7 +4,6 @@ import{
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
   Redirect
 } from "react-router-dom";
 
@@ -12,6 +11,8 @@ import{
 import HomePage from "./pages/home"; // home.jsx will be imported
 import UsersPage from "./pages/users";
 import NotFoundPage from "./pages/404";
+import LoginPage from "./pages/login";
+import RegisterPage from "./pages/register";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/users" component={UsersPage} />
         <Route exact path="/404" component={NotFoundPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
         <Redirect to="/404" />
       </Switch>
     </Router>

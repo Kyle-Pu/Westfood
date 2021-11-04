@@ -1,15 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Footer from "../pages/footer"
+import Header from "../pages/header"
+
 
 const HomePage = () => {
     return(
         <div>
-            <h1>Westwood Yelp</h1>
-            <p>Home Page</p>
+            <Header title="Westwood"></Header>
             
-            <h3>Pages</h3>
-            <Link to="/users">Users</Link>
+            < br/>
+
+            <div>
+                put info here
+            </div>
+            
+            < br/>
+            
+            <Footer></Footer>    
         </div>
+        
     );
 };
 
