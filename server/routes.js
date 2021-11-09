@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const User = require('./schemas/User.js')
+const Restaurant = require('./schemas/Restaurant.js')
 
 router.post('/user', (req, res) => {
     console.log("ping /user post")
@@ -23,6 +24,36 @@ router.post('/user', (req, res) => {
             }
         })
     }
+})
+
+router.post('/restaurant', (req, res) => {
+    console.log('ping /restaurant post')
+    // check for missing fields
+    if(!req.query.name || !req.query.address) {
+        res.status(400).json({ error: 'missing a required field' })
+    }
+    else {
+        Restaurant.create({
+            name: req.query.name,
+            address: req.query.address
+        }, (err, response) => {
+            if (err) console.log(err);
+            else if (response) {
+                console.log(response);
+                res.status(200).json({ success: 'created restaurant' })
+            }
+        })
+    }
+})
+
+router.get('/restaurants', (req, res) => {
+    Restaurant.find((err, data) => {
+        if(err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).send(data);
+        }
+    })
 })
 
 module.exports = router
