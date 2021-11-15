@@ -8,6 +8,7 @@ const Header = (props) => {
                 <Link to="/users">Users</Link>
                 <Link to="/register">Register</Link>
                 <Link to="/login">Login</Link>
+                <Link to="/restaurants">Restaurants</Link>
             </div>
             <h1>{props.title}</h1>
         </header>
