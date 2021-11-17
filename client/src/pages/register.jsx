@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Footer from "../pages/footer"
 import Header from "../pages/header"
-import axios from "axios"
+import * as api from "../api.js"
 
 class Register extends React.Component{
 
@@ -19,13 +19,13 @@ class Register extends React.Component{
     }
 
     handleSubmit(event){
-        const axios = require('axios');
-        axios.post('/user', {
+        event.preventDefault();
+        api.addUser({
             firstName: this.state.firstName,
-            lastName: this.state.lastName
-        })
-        // Backend stuff
-        // Save data and whatnot
+            lastName: this.state.lastName,
+            username: this.state.email,
+            password: this.state.password
+        });
     }
 
     handleChange(event){
