@@ -7,15 +7,15 @@ const Restaurant = require('./schemas/Restaurant.js')
 router.post('/user', (req, res) => {
     console.log("ping /user post")
     // check for missing fields
-    if(!req.query.username || !req.query.password || !req.query.firstName || !req.query.lastName){
+    if(!req.body.username || !req.body.password || !req.body.firstName || !req.body.lastName){
         res.status(400).json({ error: 'missing a required field' })
     }
     else {
         User.create({
-            username: req.query.username, 
-            password: req.query.password,
-            firstName: req.query.firstName,
-            lastName: req.query.lastName
+            username: req.body.username, 
+            password: req.body.password,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
         }, (err, response) => {
             if (err) console.log(err);
             if (response) {
@@ -26,16 +26,27 @@ router.post('/user', (req, res) => {
     }
 })
 
+router.get('/users', (req, res) => {
+    console.log("ping /user get")
+    User.find((err, data) => {
+        if(err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).send(data);
+        }
+    })
+})
+
 router.post('/restaurant', (req, res) => {
     console.log('ping /restaurant post')
     // check for missing fields
-    if(!req.query.name || !req.query.address) {
+    if(!req.body.name || !req.body.address) {
         res.status(400).json({ error: 'missing a required field' })
     }
     else {
         Restaurant.create({
-            name: req.query.name,
-            address: req.query.address
+            name: req.body.name,
+            address: req.body.address
         }, (err, response) => {
             if (err) console.log(err);
             else if (response) {

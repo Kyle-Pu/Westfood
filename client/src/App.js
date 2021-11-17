@@ -15,6 +15,9 @@ import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import RestaurantsPage from "./pages/restaurants"
 
+require('dotenv').config();
+
+
 function App() {
   return (
     <Router>
