@@ -49,4 +49,30 @@ const getRestaurants = async () => {
     })
 }
 
-export {addUser, getUsers, addRestaurant, getRestaurants};
+// create review object
+const addReview = async (body) => {
+    return await axios.post('http://localhost:8000/review', body)
+    .then( res => {
+        console.log(res);
+        return res;
+    })
+    .catch(err => {
+        console.log(err);
+        return err;
+    })
+}
+
+// get review object
+const getReviews = async () => {
+    return await axios('http://localhost:8000/reviews')
+    .then( res => {
+        console.log(res);
+        return res;
+    })
+    .catch(err => {
+        console.log(err);
+        return err;
+    })
+}
+
+export {addUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews};
