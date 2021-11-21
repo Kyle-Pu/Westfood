@@ -15,7 +15,10 @@ router.post('/review', (req,res) => {
     else{
         Review.create({
             description: req.body.description,
-            rating: req.body.rating
+            rating: req.body.rating,
+            userID: req.body.userID,
+            restaurantID: req.body.restaurantID
+
         }, (err, response) => {
             if (err) {
                 console.log(err);
@@ -23,6 +26,24 @@ router.post('/review', (req,res) => {
             }
             if (response) {
                 console.log(response);
+                db.Restaurant.update(
+                    { "name" : restaurantID},
+                    {
+                        $push: {
+                            reviews: this
+                        }
+                    }
+                )
+
+                db.User.update(
+                    { "name" : userID},
+                    {
+                        $push: {
+                            reviews: this
+                        }
+                    }
+                )
+
                 res.status(200).json({ success: 'created a review' });
             }
         })
@@ -76,6 +97,7 @@ router.get('/users', (req, res) => {
     })
 })
 
+
 router.post('/restaurant', (req, res) => {
     console.log('ping /restaurant post')
     // check for missing fields
@@ -107,4 +129,3 @@ router.get('/restaurants', (req, res) => {
     })
 })
 
-module.exports = router

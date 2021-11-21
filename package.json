@@ -1,0 +1,24 @@
+{
+  "name": "westfood",
+  "version": "1.0.0",
+  "description": "This is for building a web application.",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kyle-Pu/Westfood.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kyle-Pu/Westfood/issues"
+  },
+  "homepage": "https://github.com/Kyle-Pu/Westfood#readme"
+}
