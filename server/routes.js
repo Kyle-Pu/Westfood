@@ -13,7 +13,7 @@ router.post('/review', (req,res) => {
         res.status(400).json({error: 'missing a required field' })
     }
     else{
-        Review.create({
+        Review.create({ 
             description: req.body.description,
             rating: req.body.rating
         }, (err, response) => {
@@ -43,6 +43,10 @@ router.get('/reviews', (req, res) => {
 router.post('/user', (req, res) => {
     console.log('ping /user post')
     // check for missing fields
+    console.log(req.body.username)
+    console.log(req.body.password)
+    console.log(req.body.firstName)
+    console.log(req.body.lastName)
     if(!req.body.username || !req.body.password || !req.body.firstName || !req.body.lastName){
         res.status(400).json({ error: 'missing a required field' })
     }
@@ -79,13 +83,16 @@ router.get('/users', (req, res) => {
 router.post('/restaurant', (req, res) => {
     console.log('ping /restaurant post')
     // check for missing fields
-    if(!req.body.name || !req.body.address) {
+
+    if(!req.body.name || !req.body.address || !req.body.cuisine || !req.body.cost) {
         res.status(400).json({ error: 'missing a required field' })
     }
     else {
         Restaurant.create({
             name: req.body.name,
-            address: req.body.address
+            address: req.body.address,
+            cuisine: req.body.cuisine,
+            cost: req.body.cost
         }, (err, response) => {
             if (err) console.log(err);
             else if (response) {
@@ -96,15 +103,37 @@ router.post('/restaurant', (req, res) => {
     }
 })
 
-router.get('/restaurants', (req, res) => {
+router.get('/restaurants', async(req, res) => {
     console.log('ping /restaurants get');
-    Restaurant.find((err, data) => {
-        if(err) {
-            res.status(400).send(err);
+
+    // allow filtering by cuising and/or cost
+    try {
+        if (req.query.cuisine && req.query.cost) {
+            restaurants = await Restaurant.find({
+                cuisine: req.query.cuisine,
+                cost: req.query.cost
+            });
+        } else if (req.query.cuisine) {
+            restaurants = await Restaurant.find({
+                cuisine: req.query.cuisine
+            });
+        } else if (req.query.cost) {
+            restaurants = await Restaurant.find({
+                cost: req.query.cost
+            });
         } else {
-            res.status(200).send(data);
+            restaurants = await Restaurant.find();
         }
-    })
+
+        if (restaurants.length == 0) {
+            res.status(404).json({ error: 'no matches' })
+        } else {
+            res.status(200).send(restaurants);
+        }
+    } catch(err) {
+        res.status(400).send(err);
+    }
+    
 })
 
 module.exports = router
