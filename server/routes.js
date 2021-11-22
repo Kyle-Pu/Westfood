@@ -64,10 +64,6 @@ router.get('/reviews', (req, res) => {
 router.post('/user', (req, res) => {
     console.log('ping /user post')
     // check for missing fields
-    console.log(req.body.username)
-    console.log(req.body.password)
-    console.log(req.body.firstName)
-    console.log(req.body.lastName)
     if(!req.body.username || !req.body.password || !req.body.firstName || !req.body.lastName){
         res.status(400).json({ error: 'missing a required field' })
     }
