@@ -5,6 +5,8 @@ const User = require('./schemas/User.js')
 const Restaurant = require('./schemas/Restaurant.js')
 const Review = require('./schemas/Review.js')
 
+module.exports = router;
+
 //This part is for posting a review
 router.post('/review', (req,res) => {
     console.log('ping /review post')
