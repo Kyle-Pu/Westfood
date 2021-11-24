@@ -1,14 +1,18 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+
 const Header = (props) => {
+
     return(
         <header>
             <div>
+                <Link to="/">Home</Link>
                 <Link to="/users">Users</Link>
                 <Link to="/register">Register</Link>
                 <Link to="/login">Login</Link>
                 <Link to="/restaurants">Restaurants</Link>
+                <button onClick={props.logout}>Logout</button>
             </div>
             <h1>{props.title}</h1>
         </header>

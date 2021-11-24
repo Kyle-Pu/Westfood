@@ -2,10 +2,11 @@ import React from "react";
 import Footer from "../pages/footer"
 import Header from "../pages/header"
 
-const HomePage = () => {
+const HomePage = (props) => {
+
     return(
         <div>
-            <Header title="Westwood"></Header>
+            <Header title="Westwood" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
             
             < br/>
 

@@ -13,6 +13,26 @@ const addUser = async (body) => {
     });
 }
 
+// checks to see if there is a stored username and password which matches a request
+const verifyUser = async (body) => {
+    const enteredUsername = body.email;
+    const enteredPassword = body.password;
+    const users = await getUsers();
+    const userData = users.data;
+    let userFound = false;
+    for(let i = 0; i < userData.length; i++){
+        let userObject = userData[i];
+        let userUsername = userObject.username;
+        let userPassword = userObject.password;
+        // see if entered username and password match one in the database
+        if(userUsername == enteredUsername && userPassword == enteredPassword){
+            userFound = userObject;
+            break;
+        }
+    }
+    return userFound;
+}
+
 // get user object
 const getUsers = async () => {
     return await axios('http://localhost:8000/users')
@@ -75,4 +95,4 @@ const getReviews = async () => {
     })
 }
 
-export {addUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews};
+export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews};

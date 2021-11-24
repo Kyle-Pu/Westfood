@@ -1,21 +1,60 @@
 import React from 'react'
 import Footer from "../pages/footer"
 import Header from "../pages/header"
+import * as api from "../api.js"
+import Cookies from 'universal-cookie'
 
+const cookies = new Cookies();
+
+ 
 class Login extends React.Component{
     constructor(props){
         super(props);
         
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            cookies: cookies.get('user') 
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.componentDidMount = this.componentDidMount(this);
     }
 
-    handleSubmit(event){
+    componentDidMount(){
+        
+    }
+
+    handleCookie() {
+        console.log("handled")
+    }
+
+    succesfulLogin(user) {
+        // store that user logged in
+        const cookies = new Cookies();
+        cookies.set('user', user._id, { path: '/' }); // set cookie
+        console.log(cookies.get('user')); 
+    }
+
+    badLogin() {
+        // alert user that they failed
+        console.log("bad login!")
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        api.verifyUser({
+            email: this.state.email,
+            password: this.state.password
+        }).then(res => {
+            if(res){
+                this.succesfulLogin(res);
+            } else {
+                this.badLogin();
+            }
+        })
+        
         // Backend stuff
         // Fetch email and password
             // Check for a match

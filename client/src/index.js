@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <App userIdCookie={cookies.get('user')}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
