@@ -11,6 +11,7 @@ const RestaurantInfoBox = (props) => {
 
     const submitReview = (event) => {
         console.log(review)
+        api.addReview(review)
         event.preventDefault()
     }
 
@@ -18,14 +19,14 @@ const RestaurantInfoBox = (props) => {
         <div>
             <h1>{props.name}</h1>
             <ul>
-                <li>Address: {props.address}</li>
-                <li>Filler2</li>
-                <li>Filler3</li>
+                <li>Address: {props.info[props.idx].address}</li>
+                <li>Cuisine: {props.info[props.idx].cuisine}</li>
+                <li>Cost: {props.info[props.idx].cost}</li>
             </ul>
 
             <h3>Reviews</h3>
             <ul>
-                {props.reviews.map(element => <li>{element}</li>)}
+                {props.info[props.idx].reviews.map(element => <li>{element}</li>)}
                 <li>placeholder<p>11/15/2021</p></li>
                 <li>shit<p>11/16/2021</p></li>
                 <li>Reviews will be posted above<p>11/16/2021</p></li>
@@ -46,24 +47,18 @@ const RestaurantInfoBox = (props) => {
 
 const RestaurantsPage = () => {
 
+    let [allData, setAllData] = useState();
     let [restaurants, setRestaurants] = useState([]);
-    let [addresses, setAddresses] = useState([]);
-    let [reviews, setReviews] = useState([]);
     let [restaurantClicked, setRestaurantClicked] = useState([]); // Array to keep track of who's button has been pressed
 
     useEffect(() => {
         api.getRestaurants().then(data => {
+            setAllData(data['data']);
             console.log(data)
             
             let rests = data['data'].map(element => element.name)
             setRestaurants(rests)
             setRestaurantClicked(Array(rests.length).fill(false)) // https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
-            
-            let addies = data['data'].map(element => element.address)
-            setAddresses(addies)
-
-            let reviews = data['data'].map(element => element.reviews)
-            setReviews(reviews)
         });
     }, []);
         
@@ -97,10 +92,13 @@ const RestaurantsPage = () => {
 
     return (
         <div>
+            <h1>Restaurants</h1>
+            <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
+
             {restaurantButtons}
 
             {restaurants.map((nm, idx) => {
-                return restaurantClicked[idx] && <RestaurantInfoBox name={nm} address={addresses[restaurants.indexOf(nm)]} reviews={reviews[restaurants.indexOf(nm)]}/>
+                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm}/>
             })}
         </div>
     );
