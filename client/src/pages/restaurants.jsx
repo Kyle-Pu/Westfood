@@ -3,8 +3,15 @@ import * as api from "../api.js"
 
 const RestaurantInfoBox = (props) => {    
 
-    const submitReview = () => {
-        // Backend stuff
+    let [review, setReview] = useState("")
+
+    const handleReviewChange = (event) => {
+        setReview(event.target.value)
+    }
+
+    const submitReview = (event) => {
+        console.log(review)
+        event.preventDefault()
     }
 
     return (
@@ -24,9 +31,15 @@ const RestaurantInfoBox = (props) => {
                 <li>Reviews will be posted above<p>11/16/2021</p></li>
             </ul>
 
-            <textarea>Write review here</textarea>
-            <br />
-            <button onClick={submitReview}>Submit Review</button>
+            <form onSubmit={submitReview}>
+                <label>
+                    <h3>Write a Review!</h3>
+                    <textarea type="text" value={review} onChange={handleReviewChange} rows="5" cols="30"/>
+                </label>
+                <br />
+                <input type="submit" value="Submit Review"/>
+            </form>
+            
         </div>
     );
 }
