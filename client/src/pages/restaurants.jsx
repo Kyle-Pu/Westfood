@@ -10,16 +10,18 @@ const RestaurantInfoBox = (props) => {
     return (
         <div>
             <h1>{props.name}</h1>
-            <ol>
-                <li>Filler1</li>
+            <ul>
+                <li>Address: {props.address}</li>
                 <li>Filler2</li>
                 <li>Filler3</li>
-            </ol>
+            </ul>
 
             <h3>Reviews</h3>
             <ul>
-                <li>bussin<p>11/15/2021</p></li>
+                {props.reviews.map(element => <li>{element}</li>)}
+                <li>placeholder<p>11/15/2021</p></li>
                 <li>shit<p>11/16/2021</p></li>
+                <li>Reviews will be posted above<p>11/16/2021</p></li>
             </ul>
 
             <textarea>Write review here</textarea>
@@ -32,13 +34,23 @@ const RestaurantInfoBox = (props) => {
 const RestaurantsPage = () => {
 
     let [restaurants, setRestaurants] = useState([]);
+    let [addresses, setAddresses] = useState([]);
+    let [reviews, setReviews] = useState([]);
     let [restaurantClicked, setRestaurantClicked] = useState([]); // Array to keep track of who's button has been pressed
 
     useEffect(() => {
         api.getRestaurants().then(data => {
+            console.log(data)
+            
             let rests = data['data'].map(element => element.name)
             setRestaurants(rests)
             setRestaurantClicked(Array(rests.length).fill(false)) // https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
+            
+            let addies = data['data'].map(element => element.address)
+            setAddresses(addies)
+
+            let reviews = data['data'].map(element => element.reviews)
+            setReviews(reviews)
         });
     }, []);
         
@@ -54,7 +66,6 @@ const RestaurantsPage = () => {
         console.log(restaurants)
         setRestaurantClicked(restaurantClicked.map((x, ind) => {
             if(ind == event.target.name){
-                console.log("Here")
                 return !x;
             }
             return x;
@@ -76,7 +87,7 @@ const RestaurantsPage = () => {
             {restaurantButtons}
 
             {restaurants.map((nm, idx) => {
-                return restaurantClicked[idx] && <RestaurantInfoBox name={nm} />
+                return restaurantClicked[idx] && <RestaurantInfoBox name={nm} address={addresses[restaurants.indexOf(nm)]} reviews={reviews[restaurants.indexOf(nm)]}/>
             })}
         </div>
     );
