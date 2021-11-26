@@ -20,6 +20,7 @@ const Header = (props) => {
                 return users[i].firstName
             }
         }
+        return ", login above!"
     }
 
     return(
