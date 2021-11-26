@@ -50,6 +50,7 @@ class Login extends React.Component{
         }).then(res => {
             if(res){
                 this.succesfulLogin(res);
+                window.location.reload()
             } else {
                 this.badLogin();
             }
@@ -77,7 +78,7 @@ class Login extends React.Component{
     render(){
         return (
             <div>
-                <Header title="Login"></Header>
+                <Header title="Login" logout={this.props.logOut} user_id_cookie={this.props.user_id_cookie}></Header>
 
                 <br />
 

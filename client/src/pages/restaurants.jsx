@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import * as api from "../api.js"
+import Footer from "../pages/footer"
+import Header from "../pages/header"
 
 const RestaurantInfoBox = (props) => {    
 
@@ -11,7 +13,15 @@ const RestaurantInfoBox = (props) => {
 
     const submitReview = (event) => {
         console.log(review)
-        api.addReview(review)
+
+        let reviewData = {
+            rating: 5,
+            description: review,
+            restaurantID: props.info[props.idx]._id,
+            userID: props.uid
+        }
+
+        api.addReview(reviewData)
         event.preventDefault()
     }
 
@@ -45,7 +55,7 @@ const RestaurantInfoBox = (props) => {
     );
 }
 
-const RestaurantsPage = () => {
+const RestaurantsPage = (props) => {
 
     let [allData, setAllData] = useState();
     let [restaurants, setRestaurants] = useState([]);
@@ -92,14 +102,18 @@ const RestaurantsPage = () => {
 
     return (
         <div>
-            <h1>Restaurants</h1>
+            <Header title="Restaurants" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
+
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
 
             {restaurantButtons}
 
             {restaurants.map((nm, idx) => {
-                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm}/>
+                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie}/>
             })}
+
+            <br />
+            <Footer></Footer>
         </div>
     );
     

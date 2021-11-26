@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import * as api from "../api.js"
 import Footer from "../pages/footer"
 import Header from "../pages/header"
 
 const HomePage = (props) => {
+
+    useEffect(() => {
+        api.getUsers().then(data => {
+            console.log(data)
+        });
+    }, []);
 
     return(
         <div>

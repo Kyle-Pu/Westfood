@@ -22,6 +22,7 @@ const logout = () => {
   console.log("logging out")
   const cookie = new Cookie();
   cookie.remove('user');
+  window.location.reload()
 }
 
 
@@ -35,27 +36,27 @@ function App(props) {
         />
         <Route
           exact path="/users" 
-          render={() => <UsersPage user_id_cookie={props.userIdCookie} />}
+          render={() => <UsersPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
         <Route
           exact path="/404" 
-          render={() => <NotFoundPage user_id_cookie={props.userIdCookie} />}
+          render={() => <NotFoundPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
         <Route
           exact path="/users" 
-          render={() => <UsersPage user_id_cookie={props.userIdCookie} />}
+          render={() => <UsersPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
         <Route
           exact path="/login" 
-          render={() => <LoginPage user_id_cookie={props.userIdCookie} />}
+          render={() => <LoginPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
         <Route
           exact path="/register" 
-          render={() => <RegisterPage user_id_cookie={props.userIdCookie} />}
+          render={() => <RegisterPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
         <Route
           exact path="/restaurants" 
-          render={() => <RestaurantsPage user_id_cookie={props.userIdCookie} />}
+          render={() => <RestaurantsPage logOut={logout} user_id_cookie={props.userIdCookie} />}
         />
       </Switch>
     </Router>

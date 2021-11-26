@@ -1,9 +1,10 @@
 import React, { useState } from "react"
+import Footer from "../pages/footer"
+import Header from "../pages/header"
 
 const UserProfileBox = (props) => {    
     return (
         <div>
-            <h1>{props.username}</h1>
             <h3>{props.username}'s Favorite Restaurants</h3>
             <ol>
                 <li>Filler1</li>
@@ -14,7 +15,7 @@ const UserProfileBox = (props) => {
     );
 }
 
-const UsersPage = () =>{
+const UsersPage = (props) =>{
 
     let userNames = ["Jake", "Ysa", "Preetham", "Prateek", "Kyle"];
     let [userClicked, setUserClicked] = useState(Array(userNames.length).fill(false)); // Array to keep track of who's button has been pressed
@@ -40,11 +41,16 @@ const UsersPage = () =>{
 
     return (
         <div>
+            <Header title="Users" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
+
             {users}
 
             {userNames.map((usrName, idx) => {
-                return userClicked[idx] ? <UserProfileBox username={usrName} /> : <br/>
+                return userClicked[idx] && <UserProfileBox username={usrName} />
             })}
+
+            <br />
+            <Footer></Footer>
         </div>
     );
 };

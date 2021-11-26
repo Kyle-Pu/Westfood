@@ -26,6 +26,7 @@ class Register extends React.Component{
             username: this.state.email,
             password: this.state.password
         });
+        alert(`Thanks for registering ${this.state.firstName}!`)
     }
 
     handleChange(event){
@@ -41,7 +42,7 @@ class Register extends React.Component{
     render(){
         return (
             <div>
-                <Header title="Register"></Header>
+                <Header title="Register" logout={this.props.logOut} user_id_cookie={this.props.user_id_cookie}></Header>
 
                 <br />
 
