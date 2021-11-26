@@ -27,6 +27,7 @@ router.post('/review', (req,res) => {
                 console.log(err);
                 res.status(400).json({ error: 'error in posting a review' });
             }
+            /** 
             if (response) {
                 console.log(response);
                 db.Restaurant.update(
@@ -46,9 +47,11 @@ router.post('/review', (req,res) => {
                         }
                     }
                 );
-
-                res.status(200).json({ success: 'created a review' });
-            }
+                **/
+                if(response){
+                    res.status(200).json({ success: 'created a review' });
+                }
+                
         })
     }
 })
