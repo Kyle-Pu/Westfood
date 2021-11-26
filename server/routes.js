@@ -49,7 +49,17 @@ router.post('/review', (req,res) => {
                 );
                 **/
                 if(response){
+                    console.log(response)
+                    User.updateOne(
+                        {_id : userID},
+                        {
+                            $push: {
+                                reviews : response._id
+                            }
+                        }
+                    );
                     res.status(200).json({ success: 'created a review' });
+                    
                 }
                 
         })
