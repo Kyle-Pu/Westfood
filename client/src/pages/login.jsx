@@ -39,6 +39,7 @@ class Login extends React.Component{
 
     badLogin() {
         // alert user that they failed
+        alert("The data you entered doesn't match any currently existing accounts. Try again or register for a new account!")
         console.log("bad login!")
     }
 
