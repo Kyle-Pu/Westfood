@@ -30,9 +30,35 @@ router.post('/review', (req,res) => {
             }
             if (response) {
                 res.status(200).json({ success: 'created a review' });
+                console.log(response);
+                
             }
+            Restaurant.updateOne(
+                { _id : response.restaurantID},
+                {
+                    $push: {
+                        reviews: Review._id
+                    }
+                }
+            );
 
-            
+            User.updateOne(
+                { _id : response.userID},
+                {
+                    $push: {
+                        reviews: response._id
+                    }
+                }
+            );
+
+                /** 
+                if(response){
+                    console.log(response)
+                    User.findByIdAndUpdate(response.userID, {$push: {reviews: response.id}})
+                    res.status(200).json({ success: 'created a review' });
+                    
+                }
+                **/
                 
         })
     }
