@@ -6,16 +6,21 @@ import Header from "../pages/header"
 const RestaurantInfoBox = (props) => {    
 
     let [review, setReview] = useState("")
+    let [rating, setRating] = useState("5")
 
     const handleReviewChange = (event) => {
         setReview(event.target.value)
+    }
+
+    const handleRatingChange = (event) => {
+        setRating(event.target.value)
     }
 
     const submitReview = (event) => {
         console.log(review)
 
         let reviewData = {
-            rating: 5,
+            rating: rating,
             description: review,
             restaurantID: props.info[props.idx]._id,
             userID: props.uid
@@ -48,6 +53,15 @@ const RestaurantInfoBox = (props) => {
                     <textarea type="text" value={review} onChange={handleReviewChange} rows="5" cols="30"/>
                 </label>
                 <br />
+                
+                <label for="rating">Stars</label>
+                <select name="rating" value={rating} onChange={handleRatingChange}>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
                 <input type="submit" value="Submit Review"/>
             </form>
             
