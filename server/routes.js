@@ -4,6 +4,7 @@ const router = express.Router()
 const User = require('./schemas/User.js')
 const Restaurant = require('./schemas/Restaurant.js')
 const Review = require('./schemas/Review.js')
+const { findByIdAndUpdate } = require('./schemas/Review.js')
 
 module.exports = router;
 
@@ -27,40 +28,36 @@ router.post('/review', (req,res) => {
                 console.log(err);
                 res.status(400).json({ error: 'error in posting a review' });
             }
-            /** 
             if (response) {
+                res.status(200).json({ success: 'created a review' });
                 console.log(response);
-                db.Restaurant.update(
-                    { _id : restaurantID},
+                Restaurant.updateOne(
+                    { _id : Review.restaurantID},
                     {
                         $push: {
-                            reviews: response._id
+                            reviews: Review._id
                         }
                     }
                 );
 
-                db.User.update(
-                    { _id : userID},
+                User.updateOne(
+                    { _id : Review.userID},
                     {
                         $push: {
-                            reviews: response._id
+                            reviews: Review._id
                         }
                     }
                 );
-                **/
+                
+            }
+                /** 
                 if(response){
                     console.log(response)
-                    User.updateOne(
-                        {_id : userID},
-                        {
-                            $push: {
-                                reviews : response._id
-                            }
-                        }
-                    );
+                    User.findByIdAndUpdate(response.userID, {$push: {reviews: response.id}})
                     res.status(200).json({ success: 'created a review' });
                     
                 }
+                **/
                 
         })
     }
