@@ -10,6 +10,7 @@ module.exports = router;
 //This part is for posting a review
 router.post('/review', (req,res) => {
     console.log('ping /review post')
+    console.log(req.body)
     //check for missing fields
     if(!req.body.description || !req.body.rating){
         res.status(400).json({error: 'missing a required field' })
@@ -29,22 +30,22 @@ router.post('/review', (req,res) => {
             if (response) {
                 console.log(response);
                 db.Restaurant.update(
-                    { "name" : restaurantID},
+                    { _id : restaurantID},
                     {
                         $push: {
-                            reviews: this
+                            reviews: response._id
                         }
                     }
-                )
+                );
 
                 db.User.update(
-                    { "name" : userID},
+                    { _id : userID},
                     {
                         $push: {
-                            reviews: this
+                            reviews: response._id
                         }
                     }
-                )
+                );
 
                 res.status(200).json({ success: 'created a review' });
             }
