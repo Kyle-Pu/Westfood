@@ -1,0 +1,16 @@
+.font-link {
+    font-family: 'Lato';
+}
+
+.register-page {
+    display: flex;
+    overflow: auto;
+    height: 745px;
+    position: relative;
+}
+
+.register-image {
+    background-image: url(../images/westfood_loginpage.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

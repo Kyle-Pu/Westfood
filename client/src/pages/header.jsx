@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import '../pages/header.css'
 import * as api from "../api.js"
 
 const Header = (props) => {
@@ -8,7 +9,7 @@ const Header = (props) => {
 
     useEffect(() => {
         api.getUsers().then(data => {
-            setUsers(data['data']);
+            //setUsers(data['data']);
             console.log(data)
         });
     }, []);
@@ -24,25 +25,40 @@ const Header = (props) => {
     }
 
     return(
-        <header>
-            <div class="nav_links">
-                <li><Link to="/">Home</Link></li>
-                <br/>
-                <li><Link to="/users">Users</Link></li>
-                <br/>
-                <li><Link to="/register">Register</Link></li>
-                <br/>
-                <li><Link to="/login">Login</Link></li>
-                <br/>
-                <li><Link to="/restaurants">Restaurants</Link></li>
-                <br/>
-                <p>Hi {getUser(props.user_id_cookie)}</p>
-                <br />
-                <button onClick={props.logout}>Logout</button>
+            <div>
+                <div className="navbar-div">
+                    <div className="nav-logo">
+                        <div className="nav-title">WESTFOOD</div>
+                        <div className="nav-desc">for UCLA students</div>
+                    </div>
+                    <div class="nav-links-div">
+                        <Link to="/" className="navbar-link">
+                            <div className="navbar-text">Home</div>
+                        </Link>
+                        <br/>
+                        <Link to="/users" className="navbar-link">
+                            <div className="navbar-text">Users</div>
+                        </Link>
+                        <br/>
+                        <Link to="/restaurants" className="navbar-link">
+                            <div className="navbar-text">Restaurants</div>
+                        </Link>
+                        <br/>
+                        <Link to="/register" className="navbar-link">
+                            <div className="navbar-text">Register</div>
+                        </Link>
+                        <br/>
+                        <Link to="/login" className="navbar-link">
+                            <div className="navbar-text">Login</div>
+                        </Link>
+                        <br/>
+                    </div>
+                    <div className="nav-logout-div">
+                        <button id="logout-button" onClick={props.logout}>Log out</button>
+                    </div>
+                </div>
             </div>
-            <h1>{props.title}</h1>
-        </header>
-    )
+        );
 }
 
 export default Header;

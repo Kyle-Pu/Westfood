@@ -1,0 +1,11 @@
+.footer-div {
+    display: flex;
+    padding-left: 100px;
+    padding-right: 100px;
+    justify-content: center;
+}
+
+.footer-text {
+    font-size: 12px;
+    color: #3e60d8;
+}

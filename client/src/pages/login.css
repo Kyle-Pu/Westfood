@@ -5,7 +5,7 @@
 .login-page {
     display: flex;
     overflow: auto;
-    height: 745px;
+    height: 750px;
     position: relative;
 }
 
@@ -25,7 +25,7 @@
     padding: 0px;
 }
 
-.welcome-message {
+.login-welcome-message {
     color: white;
     font-size: 50px;
     position: absolute;
@@ -34,12 +34,12 @@
     text-align: right;
 }
 
-.welcome-desc {
+.login-welcome-desc {
     color: white;
     font-size: 20px;
     position: absolute;
     top: 160px;
-    left: 520px;
+    left: 510px;
     text-align: right;
 }
 
@@ -96,37 +96,28 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-content: center;
     border: 1px solid black;
     width: 80px;
-    height: 23px;
+    height: 20px;
     background-color: #3e60d8;
     text-decoration: none;
-}
-
-.login-signup-text{
     color: white;
-    display: flex;
-    justify-content: center;
-    margin-top: 3px;
     font-size: 13px;
-}
-
-.login-signup-text:hover {
-    color: black;
+    padding-top: 4px;
 }
 
 .login-signup-button:hover {
     background-color: white;
-    border: 1px solid #3e60d8;
+    border: 1px solid black;
+    color: black;
 }
 
 input[type=submit] {
-    color: gray;
+    color: #838383;
     width: 80px;
-    height: 24px; 
+    height: 26px; 
     border: 1px solid black;
-    background: white;
+    background: #ededed;
     border-radius: 10px;
 }
 

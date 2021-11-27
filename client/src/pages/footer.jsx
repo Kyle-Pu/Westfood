@@ -1,15 +1,15 @@
 import React from "react"
+import '../pages/footer.css'
 
 const Footer = (props) => {
     return(
-        <footer>
-            <div>
-                Westfood 2021 ©
+        <div>
+            <div className="footer-div">
+                <div className="footer-text">
+                    Westfood 2021 © Created by Ysa Calderon, Jake Greenberg-Bell, Kyle Pu, Preetham Pangaluru, and Prateek Anand
+                </div>
             </div>
-            <div>
-                Created by Ysa Calderon, Jake Greenberg-Bell, Kyle Pu, Preetham Pangaluru, and Prateek Anand
-            </div>
-        </footer>    
+        </div>
     );
 }
 

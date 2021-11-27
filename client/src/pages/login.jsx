@@ -82,11 +82,11 @@ class Login extends React.Component{
     render(){
         return (
             <div>
-                {/*<Header></Header>*/}
+                <Header></Header>
                 <div className="login-page">
                     <div className="login-image">
-                        <div className="welcome-message">Welcome back!</div>
-                        <div className="welcome-desc">
+                        <div className="login-welcome-message">Welcome back!</div>
+                        <div className="login-welcome-desc">
                             Read honest reviews about restaurants 
                             <br />
                             in Westwood, Los Angeles.
@@ -111,9 +111,7 @@ class Login extends React.Component{
                                     <br />
                                 <div className="login-buttons-div">
                                     <div className="login-buttons">
-                                        <Link to="/register" className="login-signup-button">
-                                            <div className="login-signup-text">Sign Up</div>
-                                        </Link>
+                                        <Link to="/register" className="login-signup-button">Sign Up</Link>
                                     </div>
                                     <div className="login-buttons">
                                         <label className="login-signin-button"><input type="submit" value="Sign in"/></label>
@@ -124,7 +122,7 @@ class Login extends React.Component{
                         <br />
                     </div>
                 </div>
-                {/*<Footer></Footer>*/}
+                <Footer></Footer>
             </div>
         );
     };
