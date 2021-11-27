@@ -1,0 +1,136 @@
+.font-link {
+    font-family: 'Lato';
+}
+
+.login-page {
+    display: flex;
+    overflow: auto;
+    height: 745px;
+    position: relative;
+}
+
+.login-image {
+    width: 70%;
+    display: inline-block;
+    position: relative;
+    top: 0; right: 0px; bottom: 0px; left: 0;
+    background-image: url(../images/westfood_loginpage.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.login-form {
+    width: 30%;
+    float: right;
+    padding: 0px;
+}
+
+.welcome-message {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 95px;
+    left: 480px;
+    text-align: right;
+}
+
+.welcome-desc {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 160px;
+    left: 520px;
+    text-align: right;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.login-westfood-logo {
+    color: #3e60d8;
+    font-weight: 600;
+    font-size: 50px;
+    position: relative;
+    top: 150px;
+}
+
+.login-title {
+    color: black;
+    font-size: 23px;
+    position: relative;
+    top: 210px;
+}
+
+.login-input-form {
+    padding-right: 135px;
+    text-align: right;
+}
+
+.login-email {
+    position: relative;
+    top: 240px;
+}
+
+.login-password {
+    position: relative;
+    top: 240px;
+}
+
+.login-buttons-div {
+    display: flex;
+    position: relative;
+    top: 250px;
+    left: 70px;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.login-buttons {
+    padding: 7px;
+}
+
+.login-signup-button {
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid black;
+    width: 80px;
+    height: 23px;
+    background-color: #3e60d8;
+    text-decoration: none;
+}
+
+.login-signup-text{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+    font-size: 13px;
+}
+
+.login-signup-text:hover {
+    color: black;
+}
+
+.login-signup-button:hover {
+    background-color: white;
+    border: 1px solid #3e60d8;
+}
+
+input[type=submit] {
+    color: gray;
+    width: 80px;
+    height: 24px; 
+    border: 1px solid black;
+    background: white;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover {
+    background-color: #3e60d8;
+    color: white;
+}

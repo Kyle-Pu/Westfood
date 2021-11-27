@@ -1,8 +1,11 @@
 import React from 'react'
 import Footer from "../pages/footer"
 import Header from "../pages/header"
+import { Link } from "react-router-dom"
 import * as api from "../api.js"
+import '../pages/login.css'
 import Cookies from 'universal-cookie'
+import background from '../images/westfood_loginpage.jpeg';
 
 const cookies = new Cookies();
 
@@ -79,28 +82,49 @@ class Login extends React.Component{
     render(){
         return (
             <div>
-                <Header title="Login" logout={this.props.logOut} user_id_cookie={this.props.user_id_cookie}></Header>
-
-                <br />
-
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Email:
-                        <input name="email" type="text" value={this.state.email} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <label>
-                        Password:
-                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <br />
-                    <input type="submit" value="Sign in"/>
-                </form>
-
-                <br />
-
-                <Footer></Footer>
+                {/*<Header></Header>*/}
+                <div className="login-page">
+                    <div className="login-image">
+                        <div className="welcome-message">Welcome back!</div>
+                        <div className="welcome-desc">
+                            Read honest reviews about restaurants 
+                            <br />
+                            in Westwood, Los Angeles.
+                        </div>
+                    </div>
+                    <div className="login-form">
+                        <div className="login-westfood-logo">WESTFOOD</div>
+                        <div className="login-title">Login</div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="login-input-form">
+                                <div className="login-email">
+                                    <label>
+                                        <input name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleChange} />
+                                    </label>
+                                </div>
+                                    <br />
+                                <div className="login-password">
+                                    <label>
+                                        <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                                    </label>
+                                </div>
+                                    <br />
+                                <div className="login-buttons-div">
+                                    <div className="login-buttons">
+                                        <Link to="/register" className="login-signup-button">
+                                            <div className="login-signup-text">Sign Up</div>
+                                        </Link>
+                                    </div>
+                                    <div className="login-buttons">
+                                        <label className="login-signin-button"><input type="submit" value="Sign in"/></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <br />
+                    </div>
+                </div>
+                {/*<Footer></Footer>*/}
             </div>
         );
     };

@@ -25,16 +25,16 @@ const Header = (props) => {
 
     return(
         <header>
-            <div>
-                <Link to="/">Home</Link>
+            <div class="nav_links">
+                <li><Link to="/">Home</Link></li>
                 <br/>
-                <Link to="/users">Users</Link>
+                <li><Link to="/users">Users</Link></li>
                 <br/>
-                <Link to="/register">Register</Link>
+                <li><Link to="/register">Register</Link></li>
                 <br/>
-                <Link to="/login">Login</Link>
+                <li><Link to="/login">Login</Link></li>
                 <br/>
-                <Link to="/restaurants">Restaurants</Link>
+                <li><Link to="/restaurants">Restaurants</Link></li>
                 <br/>
                 <p>Hi {getUser(props.user_id_cookie)}</p>
                 <br />
