@@ -97,7 +97,7 @@ const getReviews = async () => {
 
 //Add the restaurant id every time the user goes to a particular restaurant page
 const addRestaurantToUser = async () => {
-
+    /**stuff to be added */
 }
 
 export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews, addRestaurantToUser};

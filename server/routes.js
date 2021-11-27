@@ -168,3 +168,18 @@ router.get('/restaurants', async(req, res) => {
     
 })
 
+router.put('/restaurants/id', (req,res) => {
+    var addToRestaurantVisits = function(id){
+        Restaurant.findByIdAndUpdate(id, {$inc: {numUsersVisited : 1}},(error, result) => {
+            if(error)
+            {
+                console.log(error)
+            }else{
+                console.log("The restaurant has successfully added one visitor to the page.")
+            }
+    })
+};
+addToRestaurantVisits(id);
+
+}) 
+
