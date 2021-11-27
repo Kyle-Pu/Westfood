@@ -32,18 +32,18 @@ router.post('/review', (req,res) => {
             if (response) {
                 res.status(200).json({ success: 'created a review' });
 
-                var findUserById = function(userID){
-                    User.findById(userID, (error, result) => {
+                var updateUserById = function(userID){
+                    User.findByIdAndUpdate(userID, { $push: { reviews: response._id}},(error, result) => {
                         if(error)
                         {
                             console.log(error)
                         }else{
-                            console.log(result)
+                            console.log("The user has been updated successfully with the corresponding review")
                         }
                 })
             };
 
-            findUserById(req.body.userID)
+            updateUserById(req.body.userID)
 
             }
 
