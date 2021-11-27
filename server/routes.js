@@ -180,6 +180,6 @@ router.put('/restaurants/:id', (req,res) => {
     })
 };
 incRestaurantVisitors(req.params.id);
-
+res.send({type:'PUT'});
 }) 
 
