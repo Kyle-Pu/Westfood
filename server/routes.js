@@ -43,7 +43,19 @@ router.post('/review', (req,res) => {
                 })
             };
 
+            var updateRestaurantById = function(restaurantID){
+                Restaurant.findByIdAndUpdate(restaurantID, { $push: { reviews: response._id}},(error, result) => {
+                    if(error)
+                    {
+                        console.log(error)
+                    }else{
+                        console.log("The restaurant has been updated successfully with the corresponding review")
+                    }
+            })
+        };
+
             updateUserById(req.body.userID)
+            updateRestaurantById(req.body.restaurantID)
 
             }
 
