@@ -59,35 +59,6 @@ router.post('/review', (req,res) => {
 
             }
 
-
-            /** 
-            Restaurant.updateOne(
-                { _id : response.restaurantID},
-                {
-                    $push: {
-                        reviews: Review._id
-                    }
-                }
-            );
-
-            User.updateOne(
-                { _id : response.userID},
-                {
-                    $push: {
-                        reviews: response._id
-                    }
-                }
-            );
-            **/
-
-                /** 
-                if(response){
-                    console.log(response)
-                    User.findByIdAndUpdate(response.userID, {$push: {reviews: response.id}})
-                    res.status(200).json({ success: 'created a review' });
-                    
-                }
-                **/
                 
         })
     }
@@ -153,7 +124,8 @@ router.post('/restaurant', (req, res) => {
             name: req.body.name,
             address: req.body.address,
             cuisine: req.body.cuisine,
-            cost: req.body.cost
+            cost: req.body.cost,
+            numUsersVisited: 0
         }, (err, response) => {
             if (err) console.log(err);
             else if (response) {
@@ -166,7 +138,6 @@ router.post('/restaurant', (req, res) => {
 
 router.get('/restaurants', async(req, res) => {
     console.log('ping /restaurants get');
-
     // allow filtering by cuising and/or cost
     try {
         if (req.query.cuisine && req.query.cost) {

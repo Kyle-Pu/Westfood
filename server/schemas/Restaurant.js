@@ -20,7 +20,9 @@ const RestaurantModel = new Schema({
         enum: ['$', '$$', '$$$', '$$$$'],
         required: true
     },
-    reviews: [{type: Schema.Types.ObjectId, ref : "Review", default: ""}]
+    reviews: [{type: Schema.Types.ObjectId, ref : "Review", default: ""}],
+    /** Have a number of users visited for ranking uses */
+    numUsersVisited: Number
 });
 
 module.exports = mongoose.model('restaurants', RestaurantModel);

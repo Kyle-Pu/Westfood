@@ -95,4 +95,9 @@ const getReviews = async () => {
     })
 }
 
-export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews};
+//Add the restaurant id every time the user goes to a particular restaurant page
+const addRestaurantToUser = async () => {
+
+}
+
+export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews, addRestaurantToUser};
