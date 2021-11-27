@@ -6,6 +6,7 @@ const Restaurant = require('./schemas/Restaurant.js')
 const Review = require('./schemas/Review.js')
 const { findByIdAndUpdate } = require('./schemas/Review.js')
 
+
 module.exports = router;
 
 //This part is for posting a review
@@ -30,9 +31,24 @@ router.post('/review', (req,res) => {
             }
             if (response) {
                 res.status(200).json({ success: 'created a review' });
-                console.log(response);
-                
+
+                var findUserById = function(userID){
+                    User.findById(userID, (error, result) => {
+                        if(error)
+                        {
+                            console.log(error)
+                        }else{
+                            console.log(result)
+                        }
+                })
+            };
+
+            findUserById(req.body.userID)
+
             }
+
+
+            /** 
             Restaurant.updateOne(
                 { _id : response.restaurantID},
                 {
@@ -50,6 +66,7 @@ router.post('/review', (req,res) => {
                     }
                 }
             );
+            **/
 
                 /** 
                 if(response){
