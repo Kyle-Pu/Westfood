@@ -30,6 +30,14 @@ const RestaurantInfoBox = (props) => {
         event.preventDefault()
     }
 
+    const findReview = (id) => {
+        for(let i = 0; i < props.revs['data'].length; i++){
+            if(props.revs['data'][i]._id == id){
+                return props.revs['data'][i]['description'] + ' (' + props.revs['data'][i]['rating'] + ' stars)'
+            }
+        }
+    }
+
     return (
         <div>
             <h1>{props.name}</h1>
@@ -41,10 +49,7 @@ const RestaurantInfoBox = (props) => {
 
             <h3>Reviews</h3>
             <ul>
-                {props.info[props.idx].reviews.map(element => <li>{element}</li>)}
-                <li>placeholder<p>11/15/2021</p></li>
-                <li>shit<p>11/16/2021</p></li>
-                <li>Reviews will be posted above<p>11/16/2021</p></li>
+                {props.info[props.idx].reviews.map(element => <li>{findReview(element)}</li>)}
             </ul>
 
             <form onSubmit={submitReview}>
@@ -73,9 +78,13 @@ const RestaurantsPage = (props) => {
 
     let [allData, setAllData] = useState();
     let [restaurants, setRestaurants] = useState([]);
+    let [reviewsData, setReviewsData] = useState([]);
     let [restaurantClicked, setRestaurantClicked] = useState([]); // Array to keep track of who's button has been pressed
 
     useEffect(() => {
+        api.getReviews().then(data => {
+            setReviewsData(data)
+        });
         api.getRestaurants().then(data => {
             setAllData(data['data']);
             console.log(data)
@@ -123,7 +132,7 @@ const RestaurantsPage = (props) => {
             {restaurantButtons}
 
             {restaurants.map((nm, idx) => {
-                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie}/>
+                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie} revs={reviewsData}/>
             })}
 
             <br />
