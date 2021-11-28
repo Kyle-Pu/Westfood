@@ -3,7 +3,7 @@
     overflow: auto;
     height: 50px;
     padding: 30px;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
 }
 
@@ -60,12 +60,24 @@
     background: blue;
   }
 
-  .nav-logout-div {
-    padding: 7px;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: row;
-    padding-left: 30px;
+  .nav-user-div {
+      overflow: auto;
+      height: 40px;
+      justify-content: center;
+  }
+
+  .pfp-image {
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    top: 20px; right: 0px; bottom: 0px; left: 4px;
+    background-image: url(../images/pfp-icon.png);
+  }
+
+  .nav-current-user {
+      position: relative;
+      text-align: center;
+      margin-left: 20px;
   }
 
   #logout-button {

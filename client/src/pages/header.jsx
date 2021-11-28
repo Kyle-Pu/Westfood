@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import '../pages/header.css'
 import * as api from "../api.js"
+import navpfp from '../images/pfp-icon.png';
 
 const Header = (props) => {
 
@@ -54,6 +55,10 @@ const Header = (props) => {
                         <br/>
                     </div>
                     <div className="nav-logout-div">
+                        <div className="nav-user-div">
+                            <img src={navpfp} className="pfp-image"/>
+                            <div className="nav-current-user">User</div>
+                        </div>
                         <button id="logout-button" onClick={props.logout}>Log out</button>
                     </div>
                 </div>
