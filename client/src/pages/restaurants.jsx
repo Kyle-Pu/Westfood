@@ -4,7 +4,7 @@ import Footer from "../pages/footer"
 import Header from "../pages/header"
 import Cookies from 'universal-cookie'
 
-const CuisineSearchBar = (props) => {
+const CuisineCostSearchBar = (props) => {
 
     let [search, setSearch] = useState(""); // Current searched string
 
@@ -13,6 +13,10 @@ const CuisineSearchBar = (props) => {
         for(let i = 0; i < props.restObjs.length; i++){
             if(search != "" && props.restObjs[i].cuisine.toLowerCase().includes(str.toLowerCase())){
                 matches.push(i);
+            }
+            // add cost search capability
+            else if(search != "" && props.restObjs[i].cost == str){
+                matches.push(i)
             }
         }
         props.onFilter(matches)
@@ -27,7 +31,7 @@ const CuisineSearchBar = (props) => {
     return (
 
         <div>
-            <input value={search} placeholder={"Search Restaurants by Cuisines!"} onChange={handleChange} style={{width: '200px'}}/>
+            <input value={search} placeholder={"Search Restaurants by Cuisines/Cost!"} onChange={handleChange} style={{width: '225px'}}/>
         </div>
 
     );
@@ -205,7 +209,7 @@ const RestaurantsPage = (props) => {
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
             <RestaurantRankingPart restObjs={allData}/>
 
-            <CuisineSearchBar restObjs={allData} onFilter={handleFilter}/>
+            <CuisineCostSearchBar restObjs={allData} onFilter={handleFilter}/>
 
             {restaurantButtons.map((element, ind) => filter[ind] && element)}
 

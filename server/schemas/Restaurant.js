@@ -10,12 +10,12 @@ const RestaurantModel = new Schema({
         type: String,
         required: true
     },
-    cuisine: {
+    cuisine: { //limit the creation of restaurant objects to only be from this cuisine list
         type: String,
         enum: ['Hibachi', 'Korean', 'American', 'Thai', 'Cocktails', 'Mediterranean', 'Chinese', 'French', 'Mexican', 'Italian', 'Dessert', 'Fish', 'Asian', 'Pizza'],
         required: true
     },
-    cost: {
+    cost: { //limit the creation of restaurant objects to only be from this cost list
         type: String,
         enum: ['$', '$$', '$$$', '$$$$'],
         required: true
