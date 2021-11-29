@@ -12,7 +12,7 @@ const RestaurantModel = new Schema({
     },
     cuisine: {
         type: String,
-        enum: ['Asian', 'French', 'Mexican', 'Italian'],
+        enum: ['Hibachi', 'Korean', 'American', 'Thai', 'Cocktails', 'Mediterranean', 'Chinese', 'French', 'Mexican', 'Italian', 'Dessert', 'Fish', 'Asian', 'Pizza'],
         required: true
     },
     cost: {

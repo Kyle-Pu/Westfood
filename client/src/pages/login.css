@@ -4,98 +4,71 @@
 
 .login-page {
     display: flex;
-    overflow: auto;
-    height: 750px;
-    position: relative;
+    width: 100%;
+    height: auto;
 }
 
 .login-image {
     width: 70%;
-    display: inline-block;
     position: relative;
-    top: 0; right: 0px; bottom: 0px; left: 0;
-    background-image: url(../images/westfood_loginpage.jpeg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    text-align: center;
+    color: white;
 }
 
 .login-form {
     width: 30%;
     float: right;
     padding: 0px;
-}
-
-.login-welcome-message {
-    color: white;
-    font-size: 50px;
-    position: absolute;
-    top: 95px;
-    left: 480px;
-    text-align: right;
-}
-
-.login-welcome-desc {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 160px;
-    left: 510px;
-    text-align: right;
-}
-
-.login-form {
     text-align: center;
+    justify-content: center;
 }
 
 .login-westfood-logo {
     color: #3e60d8;
     font-weight: 600;
     font-size: 50px;
-    position: relative;
-    top: 150px;
+    padding-top: 180px;
 }
 
 .login-title {
     color: black;
     font-size: 23px;
-    position: relative;
-    top: 210px;
-}
-
-.login-input-form {
-    padding-right: 135px;
-    text-align: right;
+    padding-top: 40px;
 }
 
 .login-email {
-    position: relative;
-    top: 240px;
+    padding-top: 30px;
 }
 
-.login-password {
-    position: relative;
-    top: 240px;
+input[type=text] {
+    border-radius: 10px;
+    height: 20px;
+    border-width: 1px;
+    width: 180px;
+}
+
+input[type=password] {
+    border-radius: 10px;
+    height: 20px;
+    border-width: 1px;
+    width: 180px;
 }
 
 .login-buttons-div {
     display: flex;
-    position: relative;
-    top: 250px;
-    left: 70px;
-    flex-direction: row;
     justify-content: center;
-    align-content: space-around;
+    flex-direction: row;
+    padding-top: 20px;
 }
 
 .login-buttons {
-    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
 }
 
 .login-signup-button {
-    position: relative;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
     border: 1px solid black;
     width: 80px;
     height: 20px;
@@ -110,9 +83,10 @@
     background-color: white;
     border: 1px solid black;
     color: black;
+    transition: .5s;
 }
 
-input[type=submit] {
+#login-submit-button {
     color: #838383;
     width: 80px;
     height: 26px; 
@@ -121,7 +95,8 @@ input[type=submit] {
     border-radius: 10px;
 }
 
-input[type=submit]:hover {
+#login-submit-button:hover {
     background-color: #3e60d8;
     color: white;
+    transition: .5s;
 }
