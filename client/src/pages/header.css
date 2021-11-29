@@ -1,13 +1,14 @@
 .navbar-div {
     display: flex;
-    overflow: auto;
     height: 50px;
     padding: 30px;
     padding-top: 30px;
     padding-bottom: 20px;
+    justify-content: space-between;
 }
 
 .nav-logo {
+    width: 20%;
     padding-left: 30px;
     padding-right: 30px;
     flex-direction: column;
@@ -27,10 +28,11 @@
 }
 
 .nav-links-div {
+    width: 60%;
     padding: 7px;
     display: flex;
     flex-direction: row;
-    padding-left: 50px;
+    justify-content: center;
 }
 
 .navbar-link {
@@ -53,45 +55,56 @@
     width: 0px;
     background: transparent;
     transition: width .5s ease, background-color .5s ease;
-  }
+}
 
-  .navbar-text:hover:after {
+.navbar-text:hover:after {
     width: 100%;
     background: blue;
-  }
+}
 
-  .nav-user-div {
-      overflow: auto;
-      height: 40px;
-      justify-content: center;
-  }
+.nav-user-logout-div {
+    width: 20%;
+    height: 60px;
+    align-items: flex-start;
+    text-align: center;
+    flex-direction: column;
+}
 
-  .pfp-image {
-    width: 20px;
+.nav-user-div {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.pfp-image {
+    width: 23px;
     display: inline-block;
-    position: relative;
-    top: 20px; right: 0px; bottom: 0px; left: 4px;
     background-image: url(../images/pfp-icon.png);
-  }
+}
 
-  .nav-current-user {
-      position: relative;
-      text-align: center;
-      margin-left: 20px;
-  }
+.nav-current-user {
+    margin-left: 5px;
+}
 
-  #logout-button {
-      width: 90px;
-      background-color: white;
-      color: #3e60d8;
-      font-size: 16px;
-      border-color: #3e60d8;
-      border-radius: 12px;
-      border-width: 2px;
-  }
+.nav-logout-button-div {
+    justify-content: center;
+    margin: auto;
+}
 
-  #logout-button:hover {
-      color: white;
-      background-color: #3e60d8;
-      transition: .5s;
-  }
+#logout-button {
+    width: 90px;
+    background-color: white;
+    color: #3e60d8;
+    font-size: 16px;
+    border-color: #3e60d8;
+    border-radius: 12px;
+    border-width: 2px;
+}
+
+#logout-button:hover {
+    color: white;
+    background-color: #3e60d8;
+    transition: .5s;
+}

@@ -2,15 +2,104 @@
     font-family: 'Lato';
 }
 
-.register-page {
-    display: flex;
-    overflow: auto;
-    height: 745px;
-    position: relative;
+.register-welcome-message {
+    padding: 50px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 50px;
+    color: #3e60d8;
+    font-weight: 500;
 }
 
-.register-image {
-    background-image: url(../images/westfood_loginpage.jpeg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+.register-page {
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: relative;
+    justify-content: center;
+    justify-content: space-evenly;
 }
+
+.register-pic {
+    width: 500px;
+    height: 500px;
+    display: block;
+    margin-top: 30px;
+}
+
+.register-title {
+    font-size: 25px;
+    position: relative;
+    margin-top: 60px;
+}
+
+.register-input-form {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+input[type=text] {
+    border-radius: 8px;
+    height: 25px;
+    border-width: 1px;
+    width: 250px;
+}
+
+input[type=password] {
+    border-radius: 8px;
+    height: 25px;
+    border-width: 1px;
+    width: 250px;
+}
+
+.register-signup-button-div {
+    padding-bottom: 10px;
+}
+
+.register-buttons-div {
+    position: absolute;
+    flex-direction: column;
+    text-align: right;
+    margin-left: 95px;
+}
+
+#register-createacc-button {
+    color: white;
+    width: 160px;
+    height: 26px; 
+    border: 1px solid black;
+    background: #3e60d8;
+    border-radius: 10px;
+}
+
+#register-createacc-button:hover {
+    color: black;
+    background-color: white;
+    transition: .5s;
+}
+
+.register-login-text {
+    text-align: center;
+}
+
+.register-login-button {
+    text-decoration: none;
+    font-size: 11px;
+    color: black;
+}
+
+.register-login-button:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.register-login-button:hover:after {
+    width: 85%;
+    background: black;
+}
+

@@ -54,12 +54,14 @@ const Header = (props) => {
                         </Link>
                         <br/>
                     </div>
-                    <div className="nav-logout-div">
+                    <div className="nav-user-logout-div">
                         <div className="nav-user-div">
                             <img src={navpfp} className="pfp-image"/>
                             <div className="nav-current-user">User</div>
                         </div>
-                        <button id="logout-button" onClick={props.logout}>Log out</button>
+                        <div className="nav-logout-button-div">
+                            <button id="logout-button" onClick={props.logout}>Log out</button>
+                        </div>
                     </div>
                 </div>
             </div>

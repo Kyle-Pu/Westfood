@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import * as api from "../api.js"
 import '../pages/login.css'
 import Cookies from 'universal-cookie'
-import background from '../images/westfood_loginpage.jpeg';
+import background from '../images/westfood_background.png';
 
 const cookies = new Cookies();
 
@@ -81,15 +81,13 @@ class Login extends React.Component{
 
     render(){
         return (
+            <body>
             <div>
                 <Header></Header>
                 <div className="login-page">
                     <div className="login-image">
-                        <div className="login-welcome-message">Welcome back!</div>
-                        <div className="login-welcome-desc">
-                            Read honest reviews about restaurants 
-                            <br />
-                            in Westwood, Los Angeles.
+                        <div className="login-background">
+                            <img src={background} alt="background" width="100%" max-height="auto"/>
                         </div>
                     </div>
                     <div className="login-form">
@@ -112,9 +110,7 @@ class Login extends React.Component{
                                 <div className="login-buttons-div">
                                     <div className="login-buttons">
                                         <Link to="/register" className="login-signup-button">Sign Up</Link>
-                                    </div>
-                                    <div className="login-buttons">
-                                        <label className="login-signin-button"><input type="submit" value="Sign in"/></label>
+                                        <label className="login-signin-button"><input type="submit" value="Sign in" id="login-submit-button"/></label>
                                     </div>
                                 </div>
                             </div>
@@ -124,6 +120,7 @@ class Login extends React.Component{
                 </div>
                 <Footer></Footer>
             </div>
+            </body>
         );
     };
 

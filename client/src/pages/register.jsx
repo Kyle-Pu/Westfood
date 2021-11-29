@@ -4,6 +4,7 @@ import Header from "../pages/header"
 import { Link } from "react-router-dom"
 import * as api from "../api.js"
 import '../pages/register.css'
+import register_food from '../images/register-pic.jpeg';
 
 class Register extends React.Component{
 
@@ -76,20 +77,20 @@ class Register extends React.Component{
                                     </div>
                                     <br />
                                     <div className="register-buttons-div">
-                                        <div className="register-buttons">
-                                            <label className="register-signup-button"><input type="submit" value="Create Account" /></label>
+                                        <div className="register-signup-button-div">
+                                            <label className="register-signup-button"><input type="submit" value="Create Account" id="register-createacc-button"/></label>
                                         </div>
-                                        <div className="register-buttons">
-                                            <Link to="/login" className="register-login-button">
-                                                <div className="register-login-text">Already have an account?</div>
-                                            </Link>
-                                        </div>
+                                        <Link to="/login" className="register-login-button">
+                                            <div className="register-login-text">Already have an account?</div>
+                                        </Link>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    <div className="register-image"></div>
-                </div>
+                        <div className="register-pic">
+                            <img src={register_food} alt="register-food" width="100%" height="auto"/>
+                        </div>
+                    </div>
                 <Footer></Footer>
             </div>
         );
