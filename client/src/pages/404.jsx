@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, Route } from "react-router";
+import { Redirect, Route } from "react-router";
 
 const NotFoundPage = () => {
     
