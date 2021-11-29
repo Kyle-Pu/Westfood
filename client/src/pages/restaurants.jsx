@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import * as api from "../api.js"
 import Footer from "../pages/footer"
 import Header from "../pages/header"
+import Cookies from 'universal-cookie'
 
 const CuisineSearchBar = (props) => {
 
@@ -33,6 +34,7 @@ const CuisineSearchBar = (props) => {
 
 }
 
+const cookies = new Cookies();
 const RestaurantInfoBox = (props) => {    
 
     let [review, setReview] = useState("")
@@ -119,7 +121,7 @@ const RestaurantsPage = (props) => {
         });
         api.getRestaurants().then(data => {
             setAllData(data['data']);
-            console.log(data)
+            console.log("DATA", data)
             
             let rests = data['data'].map(element => element.name)
             setRestaurants(rests)
@@ -153,6 +155,9 @@ const RestaurantsPage = (props) => {
             }
             return x;
         }));
+        api.addVisitorsToRestaurant(allData[event.target.name]._id);
+        const userId = cookies.get('user');
+        api.addRestaurantToVisitors(userId);
         console.log(restaurantClicked)
     }
 

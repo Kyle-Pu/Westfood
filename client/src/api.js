@@ -96,8 +96,8 @@ const getReviews = async () => {
 }
 
 //Add the restaurant id every time the user goes to a particular restaurant page
-const addRestaurantToUser = async () => {
-    return await axios.put('http://localhost:8000/restaurants/:id')
+const addVisitorsToRestaurant = async (restId) => {
+    return await axios.put('http://localhost:8000/restaurants/' + restId)
     .then( res =>{
         console.log(res);
         return res; 
@@ -108,4 +108,16 @@ const addRestaurantToUser = async () => {
     })
 }
 
-export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews, addRestaurantToUser};
+const addRestaurantToVisitors = async (userId) => {
+    return await axios.put('http://localhost:8000/users/' + userId)
+    .then( res =>{
+        console.log(res);
+        return res; 
+    })
+    .catch(err => {
+        console.log(err);
+        return err;
+    })
+}
+
+export {addUser, verifyUser, getUsers, addRestaurant, getRestaurants, addReview, getReviews, addVisitorsToRestaurant, addRestaurantToVisitors};
