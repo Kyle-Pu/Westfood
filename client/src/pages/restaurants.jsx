@@ -10,22 +10,23 @@ const CuisineSearchBar = (props) => {
     const findMatch = (str) => {
         let matches = []
         for(let i = 0; i < props.restObjs.length; i++){
-            if(search != "" && props.restObjs[i].cuisine.toLowerCase().includes(search.toLowerCase())){
-                matches.push(props.restObjs[i].name);
+            if(search != "" && props.restObjs[i].cuisine.toLowerCase().includes(str.toLowerCase())){
+                matches.push(i);
             }
         }
-        return matches;
+        props.onFilter(matches)
+        console.log(matches)
     }
 
     const handleChange = (event) => {
         setSearch(event.target.value)
+        findMatch(event.target.value)
     }
 
     return (
 
         <div>
             <input value={search} placeholder={"Search Restaurants by Cuisines!"} onChange={handleChange} style={{width: '200px'}}/>
-            {findMatch(search).map(restaurant => <li>{restaurant}</li>)}
         </div>
 
     );
@@ -110,6 +111,7 @@ const RestaurantsPage = (props) => {
     let [restaurants, setRestaurants] = useState([]);
     let [reviewsData, setReviewsData] = useState([]);
     let [restaurantClicked, setRestaurantClicked] = useState([]); // Array to keep track of who's button has been pressed
+    let [filter, setFilter] = useState([]); // Filter restaurants, array indicating which restaurants should be visible at any given time
 
     useEffect(() => {
         api.getReviews().then(data => {
@@ -122,6 +124,7 @@ const RestaurantsPage = (props) => {
             let rests = data['data'].map(element => element.name)
             setRestaurants(rests)
             setRestaurantClicked(Array(rests.length).fill(false)) // https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately
+            setFilter(Array(rests.length).fill(true))
         });
     }, []);
         
@@ -131,6 +134,15 @@ const RestaurantsPage = (props) => {
     //    let restaurants = restaurantsData['data']
     //    console.log(restaurants)
     //})()
+
+    const handleFilter = (indices) => {
+        setFilter(filter.map((element, ind) => {
+            if(indices.includes(ind)){
+                return true
+            }
+            return false
+        }))
+    }
 
     const handleClick = (event) => {
         // Toggle bool value of clicked restaurant
@@ -159,9 +171,9 @@ const RestaurantsPage = (props) => {
 
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
 
-            <CuisineSearchBar restObjs={allData}/>
+            <CuisineSearchBar restObjs={allData} onFilter={handleFilter}/>
 
-            {restaurantButtons}
+            {restaurantButtons.map((element, ind) => filter[ind] && element)}
 
             {restaurants.map((nm, idx) => {
                 return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie} revs={reviewsData}/>
