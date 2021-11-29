@@ -106,6 +106,34 @@ const RestaurantInfoBox = (props) => {
         </div>
     );
 }
+const RestaurantRankingPart = (props) =>{
+    function compareTwoNumVisits(a,b)
+    {
+        const numVisits1 = a.numUsersVisited
+        const numVisits2 = b.numUsersVisited
+        let comparison = 0
+        if(numVisits1 > numVisits2)
+        {
+            comparison = 1
+        }else if(numVisits1 < numVisits2){
+            comparison = -1
+        }
+        return comparison
+    }
+    const findNthMostVisitedRestaurant = (rank) => {
+        //Finds the nth most visited restaurant (1st or 2nd or 3rd most visited restaurant)
+        //console.log("THIS PRINTS:",props.restObjs[1].name)
+
+    } 
+
+    return(
+        <><p> Our Top Three Restaurants Are: </p><ol>
+            <li>{findNthMostVisitedRestaurant(1)}</li>
+            <li>{findNthMostVisitedRestaurant(2)}</li>
+            <li>{findNthMostVisitedRestaurant(3)}</li>
+        </ol></>
+    );
+} 
 
 const RestaurantsPage = (props) => {
 
@@ -146,6 +174,7 @@ const RestaurantsPage = (props) => {
         }))
     }
 
+
     const handleClick = (event) => {
         // Toggle bool value of clicked restaurant
         console.log(restaurants)
@@ -173,8 +202,8 @@ const RestaurantsPage = (props) => {
     return (
         <div>
             <Header title="Restaurants" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
-
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
+            <RestaurantRankingPart restObjs={allData}/>
 
             <CuisineSearchBar restObjs={allData} onFilter={handleFilter}/>
 
