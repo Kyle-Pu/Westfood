@@ -3,6 +3,35 @@ import * as api from "../api.js"
 import Footer from "../pages/footer"
 import Header from "../pages/header"
 
+const CuisineSearchBar = (props) => {
+
+    let [search, setSearch] = useState(""); // Current searched string
+
+    const findMatch = (str) => {
+        let matches = []
+        for(let i = 0; i < props.restObjs.length; i++){
+            if(search != "" && props.restObjs[i].cuisine.toLowerCase().includes(search.toLowerCase())){
+                matches.push(props.restObjs[i].name);
+            }
+        }
+        return matches;
+    }
+
+    const handleChange = (event) => {
+        setSearch(event.target.value)
+    }
+
+    return (
+
+        <div>
+            <input value={search} placeholder={"Search Restaurants by Cuisines!"} onChange={handleChange} style={{width: '200px'}}/>
+            {findMatch(search).map(restaurant => <li>{restaurant}</li>)}
+        </div>
+
+    );
+
+}
+
 const RestaurantInfoBox = (props) => {    
 
     let [review, setReview] = useState("")
@@ -40,6 +69,7 @@ const RestaurantInfoBox = (props) => {
 
     return (
         <div>
+            
             <h1>{props.name}</h1>
             <ul>
                 <li>Address: {props.info[props.idx].address}</li>
@@ -76,7 +106,7 @@ const RestaurantInfoBox = (props) => {
 
 const RestaurantsPage = (props) => {
 
-    let [allData, setAllData] = useState();
+    let [allData, setAllData] = useState([]);
     let [restaurants, setRestaurants] = useState([]);
     let [reviewsData, setReviewsData] = useState([]);
     let [restaurantClicked, setRestaurantClicked] = useState([]); // Array to keep track of who's button has been pressed
@@ -128,6 +158,8 @@ const RestaurantsPage = (props) => {
             <Header title="Restaurants" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
 
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
+
+            <CuisineSearchBar restObjs={allData}/>
 
             {restaurantButtons}
 
