@@ -111,20 +111,18 @@ router.get('/users', (req, res) => {
     })
 })
 
-router.put('/users/:id/restaurantName', (req,res) => {
+router.put('/users/:id/:restaurantID', (req,res) => {
     var addRestaurantToUser = function(userID,restaurantID){
-        let rest = Restaurant.findById(restaurantID)
-
         User.findByIdAndUpdate(userID, {$push: {restaurantsVisited : restaurantID}},(error, result) => {
             if(error)
             {
                 console.log(error)
             }else{
-                console.log("The restaurant name has been added to the user.")
+                console.log("The restaurant ID has been added to the user.")
             }
     })
 };
-addRestaurantToUser(req.params.id);
+addRestaurantToUser(req.params.id, req.params.restaurantID);
 res.send({type:'PUT'});
 }) 
 

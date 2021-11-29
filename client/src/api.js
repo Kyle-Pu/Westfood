@@ -108,8 +108,8 @@ const addVisitorsToRestaurant = async (restId) => {
     })
 }
 
-const addRestaurantToVisitors = async (userId) => {
-    return await axios.put('http://localhost:8000/users/' + userId)
+const addRestaurantToVisitors = async (userId, restaurantName) => {
+    return await axios.put('http://localhost:8000/users/' + userId +'/' + restaurantName)
     .then( res =>{
         console.log(res);
         return res; 

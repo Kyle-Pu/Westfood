@@ -157,7 +157,7 @@ const RestaurantsPage = (props) => {
         }));
         api.addVisitorsToRestaurant(allData[event.target.name]._id);
         const userId = cookies.get('user');
-        api.addRestaurantToVisitors(userId);
+        api.addRestaurantToVisitors(userId, allData[event.target.name]._id);
         console.log(restaurantClicked)
     }
 
