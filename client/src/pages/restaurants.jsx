@@ -8,15 +8,65 @@ const CuisineCostSearchBar = (props) => {
 
     let [search, setSearch] = useState(""); // Current searched string
 
+    function countChar(c, str) {
+        let count = 0;
+        for (let i = 0; i < str.length; i++) 
+        if (str.charAt(i) == c) 
+            count++
+     return count;
+    }
+
     const findMatch = (str) => {
         let matches = []
         for(let i = 0; i < props.restObjs.length; i++){
-            if(str != "" && props.restObjs[i].cuisine.toLowerCase().includes(str.toLowerCase())){
-                matches.push(i);
+            let str_no_cost = str.replaceAll("$", "");
+            let cost_count = countChar("$", str);
+
+            // allow filtering by cuisine and cost in the same search
+            if(str_no_cost != "" && props.restObjs[i].cuisine.toLowerCase().includes(str_no_cost.toLowerCase())){
+                if(cost_count == 0) {
+                    matches.push(i);
+                }
+                else if(cost_count == 1) {
+                    if(props.restObjs[i].cost == "$") {
+                        matches.push(i);
+                    }
+                }
+                else if(cost_count == 2) {
+                    if(props.restObjs[i].cost == "$$") {
+                        matches.push(i);
+                    }
+                }
+                else if(cost_count == 3) {
+                    if(props.restObjs[i].cost == "$$$") {
+                        matches.push(i);
+                    }
+                }
+                else if(cost_count == 4) {
+                    if(props.restObjs[i].cost == "$$$$") {
+                        matches.push(i);
+                    }
+                }
             }
-            // add cost search capability
-            if(str != "" && (props.restObjs[i].cost.toLowerCase() == str.toLowerCase())){
-                matches.push(i)
+            else if(!str_no_cost && cost_count == 1) {
+                if(props.restObjs[i].cost == "$") {
+                    matches.push(i);
+                }
+            }
+            else if(!str_no_cost && cost_count == 2) {
+                if(props.restObjs[i].cost == "$$") {
+                    matches.push(i);
+                }
+            }
+            else if(!str_no_cost && cost_count == 3) {
+                if(props.restObjs[i].cost == "$$$") {
+                    matches.push(i);
+                }
+            }
+            else if(!str_no_cost && cost_count == 4) {
+                if(props.restObjs[i].cost == "$$$$") {
+                    matches.push(i);
+                }
             }
         }
         props.onFilter(matches)
