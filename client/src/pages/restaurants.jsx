@@ -27,46 +27,30 @@ const CuisineCostSearchBar = (props) => {
                 if(cost_count == 0) {
                     matches.push(i);
                 }
-                else if(cost_count == 1) {
-                    if(props.restObjs[i].cost == "$") {
+                else if(cost_count == 1 && props.restObjs[i].cost == "$") {
                         matches.push(i);
-                    }
                 }
-                else if(cost_count == 2) {
-                    if(props.restObjs[i].cost == "$$") {
+                else if(cost_count == 2 && props.restObjs[i].cost == "$$") {
                         matches.push(i);
-                    }
                 }
-                else if(cost_count == 3) {
-                    if(props.restObjs[i].cost == "$$$") {
+                else if(cost_count == 3 && props.restObjs[i].cost == "$$$") {
                         matches.push(i);
-                    }
                 }
-                else if(cost_count == 4) {
-                    if(props.restObjs[i].cost == "$$$$") {
+                else if(cost_count == 4 && props.restObjs[i].cost == "$$$$") {
                         matches.push(i);
-                    }
                 }
             }
-            else if(!str_no_cost && cost_count == 1) {
-                if(props.restObjs[i].cost == "$") {
+            else if(!str_no_cost && cost_count == 1 && props.restObjs[i].cost == "$") {
                     matches.push(i);
-                }
             }
-            else if(!str_no_cost && cost_count == 2) {
-                if(props.restObjs[i].cost == "$$") {
+            else if(!str_no_cost && cost_count == 2 && props.restObjs[i].cost == "$$") {
                     matches.push(i);
-                }
             }
-            else if(!str_no_cost && cost_count == 3) {
-                if(props.restObjs[i].cost == "$$$") {
+            else if(!str_no_cost && cost_count == 3 && props.restObjs[i].cost == "$$$") {
                     matches.push(i);
-                }
             }
-            else if(!str_no_cost && cost_count == 4) {
-                if(props.restObjs[i].cost == "$$$$") {
+            else if(!str_no_cost && cost_count == 4 && props.restObjs[i].cost == "$$$$") {
                     matches.push(i);
-                }
             }
         }
         props.onFilter(matches)
