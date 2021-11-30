@@ -12,6 +12,17 @@ const UserProfileBox = (props) => {
             }
         }
     }
+    //Takes in a rank (1,2, or 3), for top 1, 2, or 3, and returns the name of the restaurant to display
+    const topNthRestaurant = (rank) => {
+        let countsOfVisits = {};
+        // console.log(props.user.restaurantsVisited)
+   
+        for(let i = 0; i < props.rests.length; i++){
+             countsOfVisits[findRestaurant(props.users.restaurantsVisited[i]._id)] = props.rests[i]
+            }
+
+
+    }
 
     const findReview = (id) => {
         for(let i = 0; i < props.revs['data'].length; i++){
@@ -25,7 +36,7 @@ const UserProfileBox = (props) => {
         <div>
             <h3>{props.username}'s Favorite Restaurants</h3>
             <ol>
-                <li>Filler1</li>
+                <li>{topNthRestaurant(1)}</li>
                 <li>Filler2</li>
                 <li>Filler3</li>
             </ol>
@@ -94,7 +105,7 @@ const UsersPage = (props) =>{
             {users}
 
             {userNames.map((usrName, idx) => {
-                return userClicked[idx] && <UserProfileBox username={usrName} userRevs={userData[idx]['reviews']} revs={reviewsData} rests={restaurants} />
+                return userClicked[idx] && <UserProfileBox username={usrName} userRevs={userData[idx]['reviews']} revs={reviewsData} rests={restaurants} userObj = {userData[idx]}/>
             })}
             
             <br />
