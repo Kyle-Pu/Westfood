@@ -18,49 +18,41 @@ const CuisineCostSearchBar = (props) => {
 
     const findMatch = (str) => {
         let matches = []
-        if (!str) {
-            for(let i = 0; i < props.restObjs.length; i++){
-                matches.push(i)
-            }
-        }
-        else {
-            for(let i = 0; i < props.restObjs.length; i++){
-                let str_no_cost = str.replaceAll("$", "");
-                let cost_count = countChar("$", str);
-    
-                // allow filtering by cuisine and cost in the same search
-                if(str_no_cost != "" && (props.restObjs[i].cuisine.toLowerCase().includes(str_no_cost.toLowerCase()) || props.restObjs[i].name.toLowerCase().includes(str_no_cost.toLowerCase()))){
-                    if(cost_count == 0) {
-                        matches.push(i);
-                    }
-                    else if(cost_count == 1 && props.restObjs[i].cost == "$") {
-                            matches.push(i);
-                    }
-                    else if(cost_count == 2 && props.restObjs[i].cost == "$$") {
-                            matches.push(i);
-                    }
-                    else if(cost_count == 3 && props.restObjs[i].cost == "$$$") {
-                            matches.push(i);
-                    }
-                    else if(cost_count == 4 && props.restObjs[i].cost == "$$$$") {
-                            matches.push(i);
-                    }
+        for(let i = 0; i < props.restObjs.length; i++){
+            let str_no_cost = str.replaceAll("$", "");
+            let cost_count = countChar("$", str);
+
+            // allow filtering by cuisine and cost in the same search
+            if(str_no_cost != "" && props.restObjs[i].cuisine.toLowerCase().includes(str_no_cost.toLowerCase())){
+                if(cost_count == 0) {
+                    matches.push(i);
                 }
-                else if(!str_no_cost && cost_count == 1 && props.restObjs[i].cost == "$") {
+                else if(cost_count == 1 && props.restObjs[i].cost == "$") {
                         matches.push(i);
                 }
-                else if(!str_no_cost && cost_count == 2 && props.restObjs[i].cost == "$$") {
+                else if(cost_count == 2 && props.restObjs[i].cost == "$$") {
                         matches.push(i);
                 }
-                else if(!str_no_cost && cost_count == 3 && props.restObjs[i].cost == "$$$") {
+                else if(cost_count == 3 && props.restObjs[i].cost == "$$$") {
                         matches.push(i);
                 }
-                else if(!str_no_cost && cost_count == 4 && props.restObjs[i].cost == "$$$$") {
+                else if(cost_count == 4 && props.restObjs[i].cost == "$$$$") {
                         matches.push(i);
                 }
             }
+            else if(!str_no_cost && cost_count == 1 && props.restObjs[i].cost == "$") {
+                    matches.push(i);
+            }
+            else if(!str_no_cost && cost_count == 2 && props.restObjs[i].cost == "$$") {
+                    matches.push(i);
+            }
+            else if(!str_no_cost && cost_count == 3 && props.restObjs[i].cost == "$$$") {
+                    matches.push(i);
+            }
+            else if(!str_no_cost && cost_count == 4 && props.restObjs[i].cost == "$$$$") {
+                    matches.push(i);
+            }
         }
-        
         props.onFilter(matches)
         console.log(matches)
     }
@@ -73,7 +65,7 @@ const CuisineCostSearchBar = (props) => {
     return (
 
         <div>
-            <input value={search} placeholder={"Search Restaurants by Cuisines/Cost!"} onChange={handleChange} style={{width: '225px'}}/>
+            <input value={search} placeholder={"Search Restaurants"} onChange={handleChange} style={{width: '120px'}}/>
         </div>
 
     );
@@ -253,6 +245,11 @@ const RestaurantsPage = (props) => {
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
             {allData.length != 0 && <RestaurantRankingPart resObjs={allData}/>}
 
+            <div>
+                Search Instructions: Type in part or all of the name/cuisine you want 
+                and/or the desired amount of $ signs to filter by cost. You can do both simultaneously!
+            </div>
+            <br />
             <CuisineCostSearchBar restObjs={allData} onFilter={handleFilter}/>
 
             {restaurantButtons.map((element, ind) => filter[ind] && element)}
