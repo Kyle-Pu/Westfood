@@ -160,7 +160,9 @@ const RestaurantRankingPart = (props) =>{
     }
     const findNthMostVisitedRestaurant = (rank) => {
         //Finds the nth most visited restaurant (1st or 2nd or 3rd most visited restaurant)
-        //console.log("THIS PRINTS:",props.restObjs[1].name)
+        let arr = (props.resObjs.sort(compareTwoNumVisits))
+        arr = arr.reverse()
+        return arr[rank - 1].name
 
     } 
 
@@ -241,7 +243,7 @@ const RestaurantsPage = (props) => {
         <div>
             <Header title="Restaurants" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
-            <RestaurantRankingPart restObjs={allData}/>
+            {allData.length != 0 && <RestaurantRankingPart resObjs={allData}/>}
 
             <div>
                 Search Instructions: Type in part or all of the name/cuisine you want 
