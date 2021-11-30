@@ -83,7 +83,7 @@ class Login extends React.Component{
         return (
             <body>
             <div>
-                <Header></Header>
+                <Header user_id_cookie={cookies.get('user')} logout={this.props.logOut}></Header>
                 <div className="login-page">
                     <div className="login-image">
                         <div className="login-background">
