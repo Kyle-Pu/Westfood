@@ -65,19 +65,36 @@ const UserProfileBox = (props) => {
 
     return (
         <div>
-            <h3>{props.username}'s Favorite Restaurants</h3>
-            <ol>
-                <li>{topNthRestaurant(1)}</li>
-                <li>{topNthRestaurant(2)}</li>
-                <li>{topNthRestaurant(3)}</li>
-            </ol>
-
-            <h3>{props.username}'s Reviews</h3>
-            <ol>
-                {props.userRevs.map((element, ind) => {
-                    return <li>{findReview(element)}</li>
-                })}
-            </ol>
+            <div className="users-information-div">
+                <div className="users-username-title">
+                        {props.username}
+                </div>
+                <div className="users-favorites-info-div">
+                    <div className="users-favorite-restaurants-div">
+                        <div className="users-favorite-restaurant-title">
+                            {props.username}'s Favorite Restaurants:
+                        </div>
+                        <div className="users-favorite-restaurant-list">
+                                <div className="users-top-one-restaurants">1. {topNthRestaurant(1)}</div>
+                                <div className="users-top-two-restaurants">2. {topNthRestaurant(2)}</div>
+                                <div className="users-top-three-restaurants">3. {topNthRestaurant(3)}</div>
+                        </div>
+                    </div>
+                    
+                    <div className="users-reviews-div">
+                        <div className="users-reviews-title">
+                            {props.username}'s Reviews:
+                        </div>
+                        <div className="users-reviews">
+                            <ol>
+                                {props.userRevs.map((element, ind) => {
+                                    return <div className="users-ind-review"> <li>{findReview(element)}</li> </div>
+                                })}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -123,8 +140,9 @@ const UsersPage = (props) =>{
     let users = userNames.map((user, idx) => {
         return (
             <div>
-                <button name={idx} key={idx} onClick={handleClick}>{user}</button>
-                <br />
+                <div className="users-buttons-div">
+                    <button className="users-buttons" name={idx} key={idx} onClick={handleClick}>{user}</button>
+                </div>
             </div>
         );
     });
@@ -132,14 +150,28 @@ const UsersPage = (props) =>{
     return (
         <div>
             <Header title="Users" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
-
-            {users}
-
-            {userNames.map((usrName, idx) => {
-                return userClicked[idx] && <UserProfileBox username={usrName} userRevs={userData[idx]['reviews']} revs={reviewsData} rests={restaurants} userObj = {userData[idx]}/>
-            })}
-            
-            <br />
+            <div className="users-full-page">
+                <div className="users-page-div">
+                    <div className="users-name-list-div">
+                        <div className="users-name-list-title">
+                            Users
+                        </div>
+                        <div className="users-name-list-desc">
+                            Click on a user to view each user's favorite restuarants and past reviews! Click again to close info page for each user.
+                        </div>
+                        </div>
+                        <div className="user-name-info-div">
+                            <div className="users-name-list-buttons-div">{users}</div>
+                            <div className="users-info-div">
+                                {userNames.map((usrName, idx) => {
+                                return userClicked[idx] && <UserProfileBox username={usrName} userRevs={userData[idx]['reviews']} revs={reviewsData} rests={restaurants} userObj = {userData[idx]}/>
+                                })}
+                            </div>
+                        </div>
+                    
+                    <br />
+                </div>
+            </div>
             <Footer></Footer>
         </div>
     );

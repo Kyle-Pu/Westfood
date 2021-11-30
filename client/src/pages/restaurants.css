@@ -25,6 +25,13 @@
     font-weight: 600;
 }
 
+.restaurant-top-three-list {
+    padding-top: 13px;
+}
+
+.restaurant-top-one {
+    color:#3e60d8;
+}
 .restaurant-list-div {
     display: flex;
 }
