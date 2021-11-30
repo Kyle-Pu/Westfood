@@ -14,7 +14,7 @@ const HomePage = (props) => {
 
     return(
         <div>
-            <Header></Header>
+            <Header user_id_cookie={props.user_id_cookie} logout={props.logOut}></Header>
             < br/>
 
             <div>

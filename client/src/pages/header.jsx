@@ -10,19 +10,20 @@ const Header = (props) => {
 
     useEffect(() => {
         api.getUsers().then(data => {
-            //setUsers(data['data']);
+            setUsers(data['data']);
             console.log(data)
         });
     }, []);
 
     const getUser = (id) => {
         for(let i = 0; i < users.length; i++){
+            console.log(users[i])
             if(users[i]._id == id){
                 console.log(users[i].firstName)
-                return users[i].firstName
+                return users[i].firstName + " " + users[i].lastName
             }
         }
-        return ", login above!"
+        return "Please Login!"
     }
 
     return(
@@ -57,7 +58,7 @@ const Header = (props) => {
                     <div className="nav-user-logout-div">
                         <div className="nav-user-div">
                             <img src={navpfp} className="pfp-image"/>
-                            <div className="nav-current-user">User</div>
+                            <div className="nav-current-user">{getUser(props.user_id_cookie)}</div>
                         </div>
                         <div className="nav-logout-button-div">
                             <button id="logout-button" onClick={props.logout}>Log out</button>

@@ -17,9 +17,9 @@ const UserProfileBox = (props) => {
         let countsOfVisits = {};
         // console.log(props.user.restaurantsVisited)
    
-        for(let i = 0; i < props.rests.length; i++){
-             countsOfVisits[findRestaurant(props.users.restaurantsVisited[i]._id)] = props.rests[i]
-            }
+        //for(let i = 0; i < props.rests.length; i++){
+          //   countsOfVisits[findRestaurant(props.users.restaurantsVisited[i]._id)] = props.rests[i]
+            //}
 
 
     }

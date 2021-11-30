@@ -4,7 +4,10 @@ import Header from "../pages/header"
 import { Link } from "react-router-dom"
 import * as api from "../api.js"
 import '../pages/register.css'
+import Cookies from 'universal-cookie'
 import register_food from '../images/register-pic.jpeg';
+
+const cookies = new Cookies();
 
 class Register extends React.Component{
 
@@ -45,7 +48,7 @@ class Register extends React.Component{
     render(){
         return (
             <div>
-                <Header></Header>
+                <Header user_id_cookie={cookies.get('user')} logout={this.props.logOut}></Header>
                     <div className="register-welcome-message">Welcome to WESTFOOD!</div>
                     <div className="register-page">
                         <div className="register-form">
