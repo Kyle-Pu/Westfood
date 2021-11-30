@@ -4,7 +4,7 @@ To run, clone repo and run `npm install` in both the `client` and `server` direc
 
 Adding the following to Westfood/server/node_modules/whatwg-url/lib/encoding.js may be needed
 
-```bash
+```javascript
 "use strict";
 var util= require('util');
 var utf8Encoder = new util.TextEncoder('utf-8');
