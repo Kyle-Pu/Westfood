@@ -12,16 +12,46 @@ const UserProfileBox = (props) => {
             }
         }
     }
+
+
+
+
+    //only get unique elements in an array (filter to get only unique elements)
+    function uniqueValsOnly(val, ind, self){
+        return self.indexOf(val) === ind;
+    }
+
+    //count the occurrences in the array
+    function countOccurrencesOf(arr, valToFind){
+        var counter = 0
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i] == valToFind)
+            {
+                counter++
+            }
+        }
+        return counter;
+    }
+
     //Takes in a rank (1,2, or 3), for top 1, 2, or 3, and returns the name of the restaurant to display
     const topNthRestaurant = (rank) => {
-        let countsOfVisits = {};
-        // console.log(props.user.restaurantsVisited)
-   
-        //for(let i = 0; i < props.rests.length; i++){
-          //   countsOfVisits[findRestaurant(props.users.restaurantsVisited[i]._id)] = props.rests[i]
-            //}
+        var restaurantsAndVisits = props.userObj.restaurantsVisited
+        var uniqueRests = restaurantsAndVisits.filter(uniqueValsOnly)
+        var  countsObj = {}
+        //First count the objects in the array
+        for(let i = 0; i < uniqueRests.length; i ++)
+        {
+            countsObj[uniqueRests[i]] = countOccurrencesOf(restaurantsAndVisits, uniqueRests[i])
+        }
 
+        //The array of keys needed to sort:
+        let keysOfmyObj = Object.keys(countsObj)
+        console.log(keysOfmyObj)
 
+        //Sort the whole thing using values by looking up with keys
+        keysOfmyObj.sort(function(a,b) { return countsObj[b] - countsObj[a]})
+
+        return findRestaurant(keysOfmyObj[rank - 1])
     }
 
     const findReview = (id) => {
@@ -37,8 +67,8 @@ const UserProfileBox = (props) => {
             <h3>{props.username}'s Favorite Restaurants</h3>
             <ol>
                 <li>{topNthRestaurant(1)}</li>
-                <li>Filler2</li>
-                <li>Filler3</li>
+                <li>{topNthRestaurant(2)}</li>
+                <li>{topNthRestaurant(3)}</li>
             </ol>
 
             <h3>{props.username}'s Reviews</h3>
