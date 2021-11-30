@@ -11,11 +11,11 @@ const CuisineCostSearchBar = (props) => {
     const findMatch = (str) => {
         let matches = []
         for(let i = 0; i < props.restObjs.length; i++){
-            if(search != "" && props.restObjs[i].cuisine.toLowerCase().includes(str.toLowerCase())){
+            if(str != "" && props.restObjs[i].cuisine.toLowerCase().includes(str.toLowerCase())){
                 matches.push(i);
             }
             // add cost search capability
-            else if(search != "" && props.restObjs[i].cost == str){
+            if(str != "" && (props.restObjs[i].cost.toLowerCase() == str.toLowerCase())){
                 matches.push(i)
             }
         }
