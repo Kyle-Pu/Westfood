@@ -3,6 +3,7 @@ import * as api from "../api.js"
 import Footer from "../pages/footer"
 import Header from "../pages/header"
 import Cookies from 'universal-cookie'
+import '../pages/restaurants.css'
 
 const CuisineCostSearchBar = (props) => {
 
@@ -71,9 +72,11 @@ const CuisineCostSearchBar = (props) => {
     }
 
     return (
-
         <div>
-            <input value={search} placeholder={"Search Restaurants"} onChange={handleChange} style={{width: '120px'}}/>
+            {/*<input value={search} placeholder={"Search Restaurants"} onChange={handleChange} style={{width: '120px'}}/>*/}
+            <div className="restaurant-searchbar-div">
+                <input className="restaurant-searchbar" value={search} placeholder={"Search Restaurants by Name/Cuisines/Cost!"} onChange={handleChange}/>
+            </div>
         </div>
 
     );
@@ -118,37 +121,54 @@ const RestaurantInfoBox = (props) => {
 
     return (
         <div>
-            
-            <h1>{props.name}</h1>
-            <ul>
-                <li>Address: {props.info[props.idx].address}</li>
-                <li>Cuisine: {props.info[props.idx].cuisine}</li>
-                <li>Cost: {props.info[props.idx].cost}</li>
-            </ul>
+            <div className="restaurant-div">
+                <div className="restaurant-name">
+                    {props.name}
+                </div>
+                <div className="restaurant-info">
+                    <div className="restaurant-info-addy">{props.info[props.idx].address}</div>
+                    <div className="restaurant-info-line">|</div>
+                    <div className="restaurant-info-cuisine">{props.info[props.idx].cuisine}</div>
+                    <div className="restaurant-info-dot">.</div>
+                    <div className="restaurant-info-cost">{props.info[props.idx].cost}</div>
+                </div>
 
-            <h3>Reviews</h3>
-            <ul>
-                {props.info[props.idx].reviews.map(element => <li>{findReview(element)}</li>)}
-            </ul>
+                <div className="restaurant-reviews-div">
+                    <div className="restaurant-review-form-div">
+                        <form onSubmit={submitReview}>
+                            <div className="restaurant-review-box-div">
+                                <label>
+                                    <textarea className="restaurant-review-box" placeholder="Add Review..." type="text" value={review} onChange={handleReviewChange} rows="5" cols="30"/>
+                                </label>
+                            </div>
+                            <br />
+                            
+                            <div className="restaurant-stars-submit-div">
+                                <div className="restaurant-stars">
+                                    <div className="restaurant-stars-text"><label for="rating">Stars</label></div>
+                                    <select name="rating" value={rating} onChange={handleRatingChange}>
+                                        <option value="5">5</option>
+                                        <option value="4">4</option>
+                                        <option value="3">3</option>
+                                        <option value="2">2</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                                <div className="restaurant-submit-button">
+                                    <input type="submit" value="Submit Review" id="restaurant-submit-button"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-            <form onSubmit={submitReview}>
-                <label>
-                    <h3>Write a Review!</h3>
-                    <textarea type="text" value={review} onChange={handleReviewChange} rows="5" cols="30"/>
-                </label>
-                <br />
-                
-                <label for="rating">Stars</label>
-                <select name="rating" value={rating} onChange={handleRatingChange}>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
-                <input type="submit" value="Submit Review"/>
-            </form>
-            
+                    <div className="restaurant-reviews-title">Reviews</div>
+                    <div className="restaurant-reviews-list">
+                        <ul>
+                            {props.info[props.idx].reviews.map(element => <li>"{findReview(element)}"</li>)}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -175,11 +195,19 @@ const RestaurantRankingPart = (props) =>{
     } 
 
     return(
-        <><p> Our Top Three Restaurants Are: </p><ol>
-            <li>{findNthMostVisitedRestaurant(1)}</li>
-            <li>{findNthMostVisitedRestaurant(2)}</li>
-            <li>{findNthMostVisitedRestaurant(3)}</li>
-        </ol></>
+        <div className="restaurant-top-three">
+            <div className="restaurant-top-three-title">
+                <p> Our Top Three Restaurants Are: </p>
+            </div>
+            <ol>
+                <div className="restaurant-top-three-list">
+                    <div className="restaurant-top-one>">1. {findNthMostVisitedRestaurant(1)}</div>
+                    <div className="restaurant-top-two">2. {findNthMostVisitedRestaurant(2)}</div>
+                    <div className="restaurant-top-three">3. {findNthMostVisitedRestaurant(3)}</div>
+                </div>
+            </ol>
+            
+        </div>
     );
 } 
 
@@ -241,8 +269,10 @@ const RestaurantsPage = (props) => {
     let restaurantButtons = restaurants.map((user, idx) => {
         return (
             <div>
-                <button name={idx} key={idx} onClick={handleClick}>{user}</button>
-                <br />
+                <div className="restaurant-buttons-div">
+                    <button className="restaurant-button" name={idx} key={idx} onClick={handleClick}>{user} </button>
+                    <br />
+                </div>
             </div>
         );
     });
@@ -250,24 +280,36 @@ const RestaurantsPage = (props) => {
     return (
         <div>
             <Header title="Restaurants" logout={props.logOut} user_id_cookie={props.user_id_cookie}></Header>
-            <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
-            {allData.length != 0 && <RestaurantRankingPart resObjs={allData}/>}
+            <div className="restuarant-full-page">
+                <div className="restaurant-page-top-div">
+                    <div className="restaurant-page-desc">
+                        <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
+                        <p>Search Instructions: Type in part or all of the name/cuisine you want 
+                        and/or the desired amount of $ signs to filter by cost. You can do both simultaneously!</p>
+                    </div>
+                </div>
 
-            <div>
-                Search Instructions: Type in part or all of the name/cuisine you want 
-                and/or the desired amount of $ signs to filter by cost. You can do both simultaneously!
+                <div className="restaurant-list-div">
+                    <div className="restaurant-list">
+                        <CuisineCostSearchBar restObjs={allData} onFilter={handleFilter}/>
+                        <div className="restaurant-name-list-div">
+                            {restaurantButtons.map((element, ind) => filter[ind] && element)}
+                        </div>
+                    </div>
+                    <div className="restaurant-full-information">
+                        <div className="restaurant-top-three">
+                            {allData.length != 0 && <RestaurantRankingPart resObjs={allData}/>}
+                        </div>
+                        <div className="restaurant-list-and-info">
+                            {restaurants.map((nm, idx) => {
+                                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie} revs={reviewsData}/>
+                            })}
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <Footer></Footer>
             </div>
-            <br />
-            <CuisineCostSearchBar restObjs={allData} onFilter={handleFilter}/>
-
-            {restaurantButtons.map((element, ind) => filter[ind] && element)}
-
-            {restaurants.map((nm, idx) => {
-                return restaurantClicked[idx] && <RestaurantInfoBox info={allData} idx={restaurants.indexOf(nm)} name={nm} uid={props.user_id_cookie} revs={reviewsData}/>
-            })}
-
-            <br />
-            <Footer></Footer>
         </div>
     );
     

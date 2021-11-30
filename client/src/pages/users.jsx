@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Footer from "../pages/footer"
 import Header from "../pages/header"
 import * as api from "../api.js"
+import '../pages/users.css'
 
 const UserProfileBox = (props) => {    
 
