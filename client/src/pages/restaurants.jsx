@@ -73,7 +73,7 @@ const CuisineCostSearchBar = (props) => {
     return (
 
         <div>
-            <input value={search} placeholder={"Search Restaurants by Cuisines/Cost!"} onChange={handleChange} style={{width: '225px'}}/>
+            <input value={search} placeholder={"Search Restaurants"} onChange={handleChange} style={{width: '120px'}}/>
         </div>
 
     );
@@ -251,6 +251,11 @@ const RestaurantsPage = (props) => {
             <p>Click on a restaurant to view more info and to leave a review! Click again to close info page for each restaurant.</p>
             <RestaurantRankingPart restObjs={allData}/>
 
+            <div>
+                Search Instructions: Type in part or all of the name/cuisine you want 
+                and/or the desired amount of $ signs to filter by cost. You can do both simultaneously!
+            </div>
+            <br />
             <CuisineCostSearchBar restObjs={allData} onFilter={handleFilter}/>
 
             {restaurantButtons.map((element, ind) => filter[ind] && element)}
