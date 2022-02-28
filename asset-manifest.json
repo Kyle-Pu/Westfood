@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Westfood/static/css/main.c9d79183.chunk.css",
+    "main.js": "/Westfood/static/js/main.d9006b6d.chunk.js",
+    "main.js.map": "/Westfood/static/js/main.d9006b6d.chunk.js.map",
+    "runtime-main.js": "/Westfood/static/js/runtime-main.ef318202.js",
+    "runtime-main.js.map": "/Westfood/static/js/runtime-main.ef318202.js.map",
+    "static/js/2.71c6e2e5.chunk.js": "/Westfood/static/js/2.71c6e2e5.chunk.js",
+    "static/js/2.71c6e2e5.chunk.js.map": "/Westfood/static/js/2.71c6e2e5.chunk.js.map",
+    "static/js/3.d5d04da6.chunk.js": "/Westfood/static/js/3.d5d04da6.chunk.js",
+    "static/js/3.d5d04da6.chunk.js.map": "/Westfood/static/js/3.d5d04da6.chunk.js.map",
+    "index.html": "/Westfood/index.html",
+    "static/css/main.c9d79183.chunk.css.map": "/Westfood/static/css/main.c9d79183.chunk.css.map",
+    "static/js/2.71c6e2e5.chunk.js.LICENSE.txt": "/Westfood/static/js/2.71c6e2e5.chunk.js.LICENSE.txt",
+    "static/media/home-map.940266b0.png": "/Westfood/static/media/home-map.940266b0.png",
+    "static/media/header.css": "/Westfood/static/media/pfp-icon.9e4745a2.png",
+    "static/media/register-pic.5f024282.jpeg": "/Westfood/static/media/register-pic.5f024282.jpeg",
+    "static/media/westfood_background.eaab11a1.png": "/Westfood/static/media/westfood_background.eaab11a1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ef318202.js",
+    "static/js/2.71c6e2e5.chunk.js",
+    "static/css/main.c9d79183.chunk.css",
+    "static/js/main.d9006b6d.chunk.js"
+  ]
+}
